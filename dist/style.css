@@ -7,6 +7,11 @@
     --sidebarColor: rgb(241, 241, 241);
 }
 
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
 html {
     font-size: 62.5%; 
 }
@@ -33,6 +38,10 @@ body {
     box-shadow: 1.75px 1.75px 5px rgb(78, 78, 78);
     border-radius: 10px;
     font-size: 3rem;
+}
+
+.titleYour {
+    color: rgb(66, 66, 66)
 }
 
 .titleDoing {
@@ -72,7 +81,17 @@ body {
 
 .options {
     margin-left: 1rem;
-    margin-top: 4rem;
+    margin-top: 2rem;
+    margin-right: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    color: rgb(66, 66, 66);
+    transition: all .4s ease-in-out;
+}
+
+.options:hover {
+    cursor: pointer;
+    background-color:rgb(209, 209, 209);
 }
 
 .optionSVG {
@@ -84,7 +103,7 @@ body {
 
 #content {
     height: 100%;
-    width: 72%;
+    width: 73.5%;
     background-color: var(--sidebarColor);
     border-radius: 10px;
 }
