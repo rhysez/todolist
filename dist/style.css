@@ -1,0 +1,14 @@
+:root {
+    --bodyColor: rgb(248, 248, 248);
+}
+
+html {
+    font-size: 62.5%; 
+}
+
+body {
+    background-color: var(--bodyColor);
+    margin: 0;
+    padding: 0;
+}
+
