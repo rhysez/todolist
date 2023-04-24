@@ -1,5 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&family=Pacifico&family=Sriracha&display=swap');
+
 :root {
     --bodyColor: rgb(248, 248, 248);
+    --containerColor: white;
+    --accentColor: rgb(80, 80, 255);
+    --sidebarColor: rgb(241, 241, 241);
 }
 
 html {
@@ -7,8 +12,79 @@ html {
 }
 
 body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: var(--bodyColor);
     margin: 0;
     padding: 0;
+    min-height: 100vh;
+    font-family: 'Lexend Deca', sans-serif;
 }
 
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 80%;
+    height: 80vh;
+    padding: 2rem;
+    background-color: var(--containerColor);
+    box-shadow: 1.75px 1.75px 5px rgb(78, 78, 78);
+    border-radius: 10px;
+    font-size: 3rem;
+}
+
+.titleDoing {
+    color: var(--accentColor);
+}
+
+.tick {
+    width: 3rem;
+    height: 3rem;
+    vertical-align: middle;
+    filter: invert(26%) sepia(57%) saturate(5113%) hue-rotate(237deg) brightness(107%) contrast(102%);
+}
+
+#header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#main {
+    height: 85%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#sidebar {
+    width: 25%;
+    height: 100%;
+    background-color: var(--sidebarColor);
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    font-size: clamp(1rem, 2.5vw, 2rem);
+}
+
+.options {
+    margin-left: 1rem;
+    margin-top: 4rem;
+}
+
+.optionSVG {
+    width: clamp(1rem, 2.5vw, 2rem);
+    height: clamp(1rem, 2.5vw, 2rem);
+    vertical-align: middle;
+    filter: invert(26%) sepia(57%) saturate(5113%) hue-rotate(237deg) brightness(107%) contrast(102%);
+}
+
+#content {
+    height: 100%;
+    width: 72%;
+    background-color: var(--sidebarColor);
+    border-radius: 10px;
+}
