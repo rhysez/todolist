@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&family=Pacifico&family=Sriracha&display=swap');
 
 :root {
-    --bodyColor: rgb(248, 248, 248);
+    --bodyColor: rgb(240, 240, 240);
     --containerColor: white;
     --accentColor: rgb(80, 80, 255);
-    --sidebarColor: rgb(241, 241, 241);
+    --sidebarColor: rgb(247, 247, 247);
 }
 
 @keyframes fadeIn {
@@ -71,27 +71,36 @@ body {
 #sidebar {
     width: 25%;
     height: 100%;
-    background-color: var(--sidebarColor);
     border-radius: 10px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
+    justify-content: space-between;
     font-size: clamp(1rem, 2.5vw, 2rem);
+}
+
+#optionsBar {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
 }
 
 .options {
     margin-left: 1rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
     margin-right: 1rem;
     padding: 1rem;
-    border-radius: 10px;
+    border-radius: 5px;
+    background-color: var(--sidebarColor);
     color: rgb(66, 66, 66);
-    transition: all .4s ease-in-out;
+    transition: all .15s ease-in-out;
 }
 
 .options:hover {
     cursor: pointer;
-    background-color:rgb(209, 209, 209);
+    background-color:rgb(124, 124, 255);
+    color: white;
+    transform: scale(1.05);
 }
 
 .optionSVG {
@@ -99,6 +108,37 @@ body {
     height: clamp(1rem, 2.5vw, 2rem);
     vertical-align: middle;
     filter: invert(26%) sepia(57%) saturate(5113%) hue-rotate(237deg) brightness(107%) contrast(102%);
+}
+
+.headerButton {
+    width: clamp(3rem, 5.5vw, 5rem);
+    height: clamp(3rem, 5.5vw, 5rem);
+    filter: invert(26%) sepia(57%) saturate(5113%) hue-rotate(237deg) brightness(107%) contrast(102%);
+    transition: all .15s ease-in-out;
+}
+
+.headerButton:hover {
+    transform: scale(1.15);
+    cursor: pointer;
+}
+
+#headerButtons {
+    display: flex;
+    gap: 2rem;
+}
+
+#github {
+    width: clamp(3rem, 5.5vw, 5rem);
+    height: clamp(3rem, 5.5vw, 5rem);
+    filter: invert(26%) sepia(57%) saturate(5113%) hue-rotate(237deg) brightness(107%) contrast(102%);
+    transition: all .15s ease-in-out;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+}
+
+#github:hover {
+    cursor: pointer;
+    transform: scale(1.15);
 }
 
 #content {
