@@ -5,6 +5,11 @@
     --containerColor: white;
     --accentColor: rgb(80, 80, 255);
     --sidebarColor: rgb(247, 247, 247);
+    --textColor: rgb(66, 66, 66);
+
+    --taskLow: rgba(21, 219, 21, 0.5);
+    --taskMedium: rgb(243, 168, 28, 0.5);
+    --taskHigh: rgb(226, 25, 25, 0.5);
 }
 
 @keyframes fadeIn {
@@ -83,17 +88,23 @@ body {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
+    justify-content: flex-start;
+    gap: 1rem;
+    height: 90%;
 }
 
 .options {
     margin-left: 1rem;
-    margin-top: 1rem;
     margin-right: 1rem;
     padding: 1rem;
+    height: 4rem;
     border-radius: 5px;
     background-color: var(--sidebarColor);
     color: rgb(66, 66, 66);
     transition: all .15s ease-in-out;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
 }
 
 .options:hover {
@@ -142,8 +153,47 @@ body {
 }
 
 #content {
+    display: flex;
+    flex-direction: column;
     height: 100%;
     width: 73.5%;
     background-color: var(--sidebarColor);
     border-radius: 10px;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
+    height: 4rem;
+    font-size: clamp(1rem, 2.5vw, 2rem);
+    padding: 1rem;
+    border-radius: 10px;
+    transition: all .15s ease-in-out;
+    color: var(--textColor);
+}
+
+.task:hover {
+    cursor: pointer;
+    transform: scale(1.015);
+    color: white;
+}
+
+.taskTitle {
+    max-width: 75%;
+}
+
+#task1 {
+    background-color: var(--taskLow);
+}
+
+#task2 {
+    background-color: var(--taskMedium);
+}
+
+#task3 {
+    background-color: var(--taskHigh);
 }
