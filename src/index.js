@@ -20,6 +20,7 @@ const getSection = (() => {
     const taskDescription = document.getElementById('taskDescription');
     const taskDueDate = document.getElementById('taskDueDate');
     const taskSubmit = document.getElementById('submitButton');
+    const taskCancel = document.getElementById('cancelButton');
     return { 
             header, 
             main, 
@@ -36,7 +37,8 @@ const getSection = (() => {
             taskTitle,
             taskDescription,
             taskDueDate,
-            taskSubmit 
+            taskSubmit,
+            taskCancel
            };
 })();
 
@@ -55,7 +57,11 @@ export const buttonLogic = (() => {
     
     getSection.taskSubmit.addEventListener('click', () => {
         taskBox.style.display = 'none';
-    })
+    });
+
+    getSection.taskCancel.addEventListener('click', () => {
+        taskBox.style.display = 'none';
+    });
 })();
 
 
