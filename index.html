@@ -12,12 +12,26 @@
         <div id="header">
             <span class="titleYour">Your<span class="titleDoing">Doing<img src="../images/check-circle.svg" class="tick"></span></span>
             <div id="headerButtons">
-                <img src="../images/plus-circle.svg" alt="newtask" class="headerButton">
-                <img src="../images/lightbulb-on-outline.svg" alt="darkmode" class="headerButton">
+                <img src="../images/plus-circle.svg" alt="newtask" class="headerButton" id="addTaskButton">
+                <img src="../images/lightbulb-on-outline.svg" alt="darkmode" class="headerButton" id="darkModeButton">
             </div>
         </div>
 
         <div id="main">
+            <div id="taskBox">
+                <form id="taskForm">
+                    <label for="taskTitle">Title</label>
+                    <input type="text" name="taskTitle" id="taskTitle" required>
+        
+                    <label for="taskDescription">Description</label>
+                    <input type="text" name="taskDescription" id="taskDescription" required>
+        
+                    <label for="taskDueDate">Due</label>
+                    <input type="datetime-local" name="taskDueDate" id="taskDueDate" required>
+    
+                    <button type="submit" id="submitButton">Add</button>
+                </form>
+            </div>
             <div id="sidebar">
                 <div id="optionsBar">
                     <span class="options" id="home"><img src="../images/home-circle.svg" class="optionSVG"> Home</span>
