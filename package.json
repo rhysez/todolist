@@ -4,7 +4,8 @@
   "description": "To Do List project as part of The Odin Project's full stack JavaScript curriculum. This project utilises modules and use of the single responsibility principle to neatly organise code and enhance re-usability.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --watch"
   },
   "repository": {
     "type": "git",
