@@ -11,6 +11,15 @@ const getSection = (() => {
     const week = document.getElementById('week');
     const groups = document.getElementById('groups');
     const notes = document.getElementById('notes');
+
+    const addTask = document.getElementById('addTaskButton');
+    const darkMode = document.getElementById('darkModeButton');
+
+    const taskBox = document.getElementById('taskBox');
+    const taskTitle = document.getElementById('taskTitle');
+    const taskDescription = document.getElementById('taskDescription');
+    const taskDueDate = document.getElementById('taskDueDate');
+    const taskSubmit = document.getElementById('submitButton');
     return { 
             header, 
             main, 
@@ -20,10 +29,35 @@ const getSection = (() => {
             today,
             week,
             groups,
-            notes 
+            notes,
+            addTask,
+            darkMode,
+            taskBox,
+            taskTitle,
+            taskDescription,
+            taskDueDate,
+            taskSubmit 
            };
 })();
 
 export default getSection
 
-console.log(getSection);
+export function task(title, description, dueDate) {
+    this.title = title
+    this.description = description
+    this.dueDate = dueDate
+};
+
+export const buttonLogic = (() => {
+    getSection.addTask.addEventListener('click', () => {
+        taskBox.style.display = 'flex';
+    });
+    
+    getSection.taskSubmit.addEventListener('click', () => {
+        taskBox.style.display = 'none';
+    })
+})();
+
+
+
+
