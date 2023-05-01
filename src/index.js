@@ -44,25 +44,51 @@ const getSection = (() => {
 
 export default getSection
 
-export function task(title, description, dueDate) {
-    this.title = title
-    this.description = description
-    this.dueDate = dueDate
+class Task {
+    constructor (title, description, dueDate){
+        this.title = title
+        this.description = description
+        this.dueDate = dueDate
+    }
 };
 
 export const buttonLogic = (() => {
     getSection.addTask.addEventListener('click', () => {
         taskBox.style.display = 'flex';
     });
+
+    function addTaskContent(){
+        let task = document.createElement('div');
+        let title = document.createElement('div');
+        let date = document.createElement('div');
+
+        task.classList.add('task');
+        getSection.content.appendChild(task);
+        
+        title.classList.add('taskTitle');
+        title.textContent = taskTitle.value;
+        task.appendChild(title);
+
+        date.textContent = taskDueDate.value;
+        task.appendChild(date);
+
+        console.log(taskManager);
+    };
     
     getSection.taskSubmit.addEventListener('click', () => {
+        event.preventDefault()
+        let newTask = new Task(taskTitle.value, taskDescription.value, taskDueDate.value);
+        taskManager.push(newTask);
         taskBox.style.display = 'none';
+        addTaskContent();
     });
 
     getSection.taskCancel.addEventListener('click', () => {
         taskBox.style.display = 'none';
     });
 })();
+
+const taskManager = [];
 
 
 
