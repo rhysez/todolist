@@ -13,6 +13,7 @@
             <span class="titleYour">Your<span class="titleDoing">Doing<img src="../images/check-circle.svg" class="tick"></span></span>
             <div id="headerButtons">
                 <img src="../images/plus-circle.svg" alt="newtask" class="headerButton" id="addTaskButton">
+                <img src="../images/format-list-group-plus.svg" alt="newGroup" class="headerButton" id="newGroupButton">
                 <img src="../images/lightbulb-on-outline.svg" alt="darkmode" class="headerButton" id="darkModeButton">
             </div>
         </div>
@@ -28,9 +29,25 @@
         
                     <label for="taskDueDate">Due</label>
                     <input type="date" name="taskDueDate" id="taskDueDate">
+
+                    <label for="priority">Priority</label>
+                    <select name="taskPriority" id="taskPriority">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                      </select>
     
-                    <button type="submit" id="submitButton" class="formButton">Add</button>
-                    <button id="cancelButton" class="formButton">Cancel</button>
+                    <button type="submit" id="taskSubmit" class="formButton">Add</button>
+                    <button id="taskCancel" class="formButton">Cancel</button>
+                </form>
+            </div>
+            <div id="groupBox">
+                <form id="groupForm">
+                    <label for="groupTitle">Group name:</label>
+                    <input type="text" name="groupTitle" id="groupTitle">
+
+                    <button type="submit" id="groupSubmit" class="formButton">Create new group</button>
+                    <button id="groupCancel" class="formButton">Cancel</button>
                 </form>
             </div>
             <div id="sidebar">
@@ -42,19 +59,11 @@
                     <span class="options" id="notes"><img src="../images/help-circle.svg" class="optionSVG"> Notes</span>
                 </div>
 
-                <img src="../images/github.svg" alt="github" id="github">
+                <a href="https://github.com/rhysez"><img src="../images/github.svg" alt="github" id="github"></a>
             </div>
             <div id="content">
                 <!--<div class="task" id="task1">
                     <div class="taskTitle">Learn to code for 1 hour 30 minutes</div>
-                    <div class="taskButtons"></div>
-                </div>
-                <div class="task" id="task2">
-                    <div class="taskTitle">Walk the dog</div>
-                    <div class="taskButtons"></div>
-                </div>
-                <div class="task" id="task3">
-                    <div class="taskTitle">Go to the gym for 1 hour</div>
                     <div class="taskButtons"></div>
                 </div>-->
             </div>

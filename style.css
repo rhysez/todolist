@@ -8,7 +8,7 @@
     --textColor: rgb(66, 66, 66);
 
 
-    --taskGeneric: rgb(185, 185, 246);
+    --taskGeneric: rgb(78, 78, 253, 0.75);
     --taskLow: rgba(21, 219, 21, 0.5);
     --taskMedium: rgb(243, 168, 28, 0.5);
     --taskHigh: rgb(226, 25, 25, 0.5);
@@ -43,9 +43,10 @@ body {
     font-family: 'Lexend Deca', sans-serif;
 }
 
+#groupBox, 
 #taskBox {
     display: none;
-    background-color: var(--accentColor);
+    background-color: var(--taskGeneric);
     position: absolute;
     top: 0;
     left: 0;
@@ -62,6 +63,7 @@ body {
     box-shadow: 1.75px 1.75px 5px rgb(78, 78, 78);
 }
 
+#groupForm,
 #taskForm {
     display: flex;
     flex-direction: column;
@@ -79,6 +81,7 @@ input {
     border: none;
     background-color: var(--sidebarColor);
     font-size: 2rem;
+    text-align: center;
 }
 
 .formButton {
@@ -91,6 +94,16 @@ input {
     padding: 1rem;
     color: var(--textColor);
     cursor: pointer;
+}
+
+#taskPriority {
+    width: 30%;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 2rem;
+    padding: 1rem;
+    color: var(--textColor);
 }
 
 #container {
