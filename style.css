@@ -7,6 +7,8 @@
     --sidebarColor: rgb(247, 247, 247);
     --textColor: rgb(66, 66, 66);
 
+
+    --taskGeneric: rgb(185, 185, 246);
     --taskLow: rgba(21, 219, 21, 0.5);
     --taskMedium: rgb(243, 168, 28, 0.5);
     --taskHigh: rgb(226, 25, 25, 0.5);
@@ -234,6 +236,7 @@ input {
     border-radius: 10px;
     transition: all .15s ease-in-out;
     color: var(--textColor);
+    background-color: var(--taskGeneric);
 }
 
 .task:hover {
@@ -244,16 +247,4 @@ input {
 
 .taskTitle {
     max-width: 75%;
-}
-
-#task1 {
-    background-color: var(--taskLow);
-}
-
-#task2 {
-    background-color: var(--taskMedium);
-}
-
-#task3 {
-    background-color: var(--taskHigh);
 }
