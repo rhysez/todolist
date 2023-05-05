@@ -135,6 +135,7 @@ export const addTaskLogic = (() => {
 
   getSection.taskCancel.addEventListener("click", () => {
     taskBox.style.display = "none";
+    event.preventDefault();
   });
 })();
 
@@ -161,12 +162,37 @@ export const newGroupLogic = (() => {
 
   getSection.groupCancel.addEventListener("click", () => {
     groupBox.style.display = "none";
+    event.preventDefault();
   });
+
+  function loadGroups(){
+      let displayGroup = document.createElement('div');
+      while (content.firstChild){
+          content.removeChild(content.lastChild)
+      }
+
+      // currently only displays 1 div
+      let i = 0;
+      for (i = 0; i < groups.length; i++){
+          displayGroup.classList.add('task');
+          content.appendChild(displayGroup);
+      }
+
+      groups.forEach((group) => {
+        displayGroup.textContent = groups[groups.length - 1].title;
+      });
+  }
+
+  getSection.groups.addEventListener('click', () => {
+      loadGroups();
+  })
 })();
 
+// event listeners for pageLoad functions
 export const categoryLogic = (() => {
-  // reloads app on click
   getSection.home.addEventListener("click", () => {
-    location.reload();
+    while (content.firstChild){
+        content.removeChild(content.lastChild)
+    }
   });
 })();
