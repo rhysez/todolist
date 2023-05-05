@@ -152,9 +152,9 @@ export const newGroupLogic = (() => {
     groups.push(group);
     console.log(groups);
 
-    let option = document.createElement('option');
-    option.value = group.title; //undefined
-    option.id = group.title; //undefined
+    let option = document.createElement("option");
+    option.value = group.title;
+    option.id = group.title;
     option.textContent = group.title;
     getSection.taskGroup.appendChild(option);
   });
@@ -165,7 +165,8 @@ export const newGroupLogic = (() => {
 })();
 
 export const categoryLogic = (() => {
-    // reloads app on click
-    getSection.home.addEventListener('click', () => {location.reload()});
+  // reloads app on click
+  getSection.home.addEventListener("click", () => {
+    location.reload();
+  });
 })();
-
