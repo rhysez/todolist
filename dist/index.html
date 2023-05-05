@@ -30,18 +30,23 @@
                     <label for="taskDueDate">Due</label>
                     <input type="date" name="taskDueDate" id="taskDueDate">
 
-                    <label for="priority">Priority</label>
-                    <select name="taskPriority" id="taskPriority">
-                        <option value="low">Low</option>
-                        <option value="medium">Medium</option>
-                        <option value="high">High</option>
-                      </select>
+                    <div id="selectors">
+                        <div class="selector">
+                            <label for="priority">Priority</label>
+                            <select name="taskPriority" id="taskPriority">
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                             <option value="high">High</option>
+                             </select>
+                        </div>
 
-
-                    <label for="group">Group</label>
-                    <select name="taskGroup" id="taskGroup">
-                        <option value="none">None</option>
-                      </select>
+                        <div class="selector">
+                            <label for="group">Group</label>
+                            <select name="taskGroup" id="taskGroup">
+                                <option value="none">None</option>
+                            </select>
+                        </div>
+                    </div>
     
                     <button type="submit" id="taskSubmit" class="formButton">Add</button>
                     <button id="taskCancel" class="formButton">Cancel</button>
