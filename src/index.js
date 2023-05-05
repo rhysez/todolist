@@ -125,7 +125,7 @@ export const addTaskLogic = (() => {
         taskBox.style.display = 'none';
     });
 
-}})();
+})();
 
 export const newGroupLogic = (() => {  
     
@@ -146,8 +146,6 @@ export const newGroupLogic = (() => {
         groupBox.style.display = 'none';
     });
 })();
-
-
 
 
 
