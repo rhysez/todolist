@@ -21,6 +21,7 @@ const getSection = (() => {
   const taskDescription = document.getElementById("taskDescription");
   const taskDueDate = document.getElementById("taskDueDate");
   const taskPriority = document.getElementById("taskPriority");
+  const taskGroup = document.getElementById("taskGroup");
   const taskSubmit = document.getElementById("taskSubmit");
   const taskCancel = document.getElementById("taskCancel");
 
@@ -46,6 +47,7 @@ const getSection = (() => {
     taskDescription,
     taskDueDate,
     taskPriority,
+    taskGroup,
     taskSubmit,
     taskCancel,
     groupBox,
@@ -145,9 +147,16 @@ export const newGroupLogic = (() => {
 
   getSection.groupSubmit.addEventListener("click", () => {
     event.preventDefault();
+    let group = new Group(groupTitle.value);
     groupBox.style.display = "none";
-    groups.push(new Group(groupTitle.value));
+    groups.push(group);
     console.log(groups);
+
+    let option = document.createElement('option');
+    option.value = group.title; //undefined
+    option.id = group.title; //undefined
+    option.textContent = group.title;
+    getSection.taskGroup.appendChild(option);
   });
 
   getSection.groupCancel.addEventListener("click", () => {
