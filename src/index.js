@@ -58,7 +58,7 @@ const getSection = (() => {
 export default getSection
 
 export class Task {
-    constructor (title, description, dueDate, priority){
+    constructor (title, description, dueDate, priority) {
         this.title = title
         this.description = description
         this.dueDate = dueDate
@@ -66,9 +66,18 @@ export class Task {
     }
 };
 
-const defaultGroup = [];
+export class Group {
+    constructor (title) {
+        this.title = title
+        this.taskList = []
+    }
+};
 
 export const addTaskLogic = (() => {
+
+    const tasks = [];
+    let taskId = 1;
+
     getSection.addTask.addEventListener('click', () => {
         taskBox.style.display = 'flex';
     });
@@ -100,37 +109,42 @@ export const addTaskLogic = (() => {
         if (taskPriority.value === 'high'){
             task.style.backgroundColor = 'var(--taskHigh)';
         }
-
-        console.log(taskManager);
-    };
     
     // creates the new task object and pushes it to taskManager array
     getSection.taskSubmit.addEventListener('click', () => {
         event.preventDefault()
         let newTask = new Task(taskTitle.value, taskDescription.value, 
                                taskDueDate.value, taskPriority.value);
-        defaultGroup.push(newTask);
         taskBox.style.display = 'none';
         addTaskContent();
+        tasks.push(newTask);
+        console.log(tasks);
     });
 
     getSection.taskCancel.addEventListener('click', () => {
         taskBox.style.display = 'none';
     });
-})();
 
-export const newGroupLogic = (() => {   
+}})();
+
+export const newGroupLogic = (() => {  
+    
+    const groups = []
+
     getSection.newGroup.addEventListener('click', () => {
         groupBox.style.display = 'flex';
     });
 
     getSection.groupSubmit.addEventListener('click', () => {
+        event.preventDefault();
         groupBox.style.display = 'none';
-    })
+        groups.push(new Group(groupTitle.value));
+        console.log(groups);
+    });
 
     getSection.groupCancel.addEventListener('click', () => {
         groupBox.style.display = 'none';
-    })
+    });
 })();
 
 
