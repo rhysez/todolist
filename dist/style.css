@@ -96,7 +96,8 @@ input {
     cursor: pointer;
 }
 
-#taskPriority {
+#taskPriority,
+#taskGroup {
     width: 30%;
     border: none;
     border-radius: 5px;

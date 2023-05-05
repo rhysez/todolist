@@ -156,6 +156,7 @@ export const newGroupLogic = (() => {
 })();
 
 export const categoryLogic = (() => {
+    // reloads app on click
     getSection.home.addEventListener('click', () => {location.reload()});
 })();
 
