@@ -77,6 +77,7 @@ export const addTaskLogic = (() => {
 
     const tasks = [];
     let taskId = 1;
+    let i = 0;
 
     getSection.addTask.addEventListener('click', () => {
         taskBox.style.display = 'flex';
@@ -90,6 +91,8 @@ export const addTaskLogic = (() => {
 
         task.classList.add('task');
         getSection.content.appendChild(task);
+
+        task.id = taskId++;
         
         title.classList.add('taskTitle');
         title.textContent = taskTitle.value;
@@ -109,6 +112,7 @@ export const addTaskLogic = (() => {
         if (taskPriority.value === 'high'){
             task.style.backgroundColor = 'var(--taskHigh)';
         }
+    }
     
     // creates the new task object and pushes it to taskManager array
     getSection.taskSubmit.addEventListener('click', () => {
@@ -124,7 +128,6 @@ export const addTaskLogic = (() => {
     getSection.taskCancel.addEventListener('click', () => {
         taskBox.style.display = 'none';
     });
-
 })();
 
 export const newGroupLogic = (() => {  
