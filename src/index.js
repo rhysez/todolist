@@ -151,6 +151,7 @@ export const newGroupLogic = (() => {
     let group = new Group(groupTitle.value);
     groupBox.style.display = "none";
     groups.push(group);
+    console.log(group);
     console.log(groups);
 
     let option = document.createElement("option");
@@ -165,35 +166,29 @@ export const newGroupLogic = (() => {
     event.preventDefault();
   });
 
-  function loadGroups(){
-      let displayGroup = document.createElement('div');
-      while (content.firstChild){
-          content.removeChild(content.lastChild)
-      }
+  function loadGroups() {
+    while (content.firstChild) {
+      content.removeChild(content.lastChild);
+    }
 
-      // currently only displays 1 div
-      let i = 0;
-      for (i = 0; i < groups.length; i++){
-          displayGroup.classList.add('task');
-          content.appendChild(displayGroup);
-      }
+    groups.forEach((group, i) => {
+      let displayGroup = document.createElement("div");
+      displayGroup.classList.add("task");
+      displayGroup.textContent = groups[i];
+      content.appendChild(displayGroup);
+    });
+  };
 
-      groups.forEach((group) => {
-        displayGroup.textContent = groups[groups.length - 1].title;
-      });
-  }
-
-  getSection.groups.addEventListener('click', () => {
-      loadGroups();
-  })
+  getSection.groups.addEventListener("click", () => {
+    loadGroups();
+  });
 })();
 
 // event listeners for pageLoad functions
 export const categoryLogic = (() => {
   getSection.home.addEventListener("click", () => {
-    while (content.firstChild){
-        content.removeChild(content.lastChild)
+    while (content.firstChild) {
+      content.removeChild(content.lastChild);
     }
   });
 })();
-
