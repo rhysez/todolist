@@ -29,6 +29,10 @@ const getSection = (() => {
   const groupTitle = document.getElementById("groupTitle");
   const groupSubmit = document.getElementById("groupSubmit");
   const groupCancel = document.getElementById("groupCancel");
+
+  const taskDetails = document.getElementById('taskDetais');
+  const taskDetailsText = document.getElementById('taskDetailsText');
+  const taskDetailsCancel = document.getElementById('taskDetailsCancel')
   return {
     header,
     main,
@@ -54,6 +58,9 @@ const getSection = (() => {
     groupTitle,
     groupSubmit,
     groupCancel,
+    taskDetails,
+    taskDetailsText,
+    taskDetailsCancel
   };
 })();
 
@@ -118,6 +125,11 @@ export const addTaskLogic = (() => {
         task.style.backgroundColor = "var(--taskHigh)";
       }
     });
+
+    task.addEventListener('click', () => {
+      taskDetails.style.display = 'flex';
+      taskDetailsText.textContent = `${newTask.description}`
+    })
   }
 
   function reloadTasks() {
@@ -148,6 +160,11 @@ export const addTaskLogic = (() => {
         task.style.backgroundColor = "var(--taskHigh)";
       }
     });
+
+    task.addEventListener('click', () => {
+      taskDetails.style.display = 'flex';
+      taskDetailsText.textContent = `${newTask.description}`
+    })
   }
 
   function clearContent() {
@@ -176,6 +193,10 @@ export const addTaskLogic = (() => {
     clearContent();
     reloadTasks();
   });
+
+  getSection.taskDetailsCancel.addEventListener('click', () => {
+    taskDetails.style.display = 'none';
+  })
 })();
 
 export const newGroupLogic = (() => {
@@ -226,7 +247,4 @@ export const newGroupLogic = (() => {
   });
 })();
 
-// event listeners for pageLoad functions
-export const categoryLogic = (() => {
-  
-})();
+
