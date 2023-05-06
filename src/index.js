@@ -133,6 +133,7 @@ export const addTaskLogic = (() => {
   }
 
   function reloadTasks() {
+
     tasks.forEach((item, i) => {
       let task = document.createElement("div");
       let title = document.createElement("div");
@@ -159,12 +160,12 @@ export const addTaskLogic = (() => {
       if (tasks[i].priority === "high") {
         task.style.backgroundColor = "var(--taskHigh)";
       }
-    });
 
-    task.addEventListener('click', () => {
-      taskDetails.style.display = 'flex';
-      taskDetailsText.textContent = `${newTask.description}`
-    })
+      task.addEventListener('click', () => {
+        taskDetails.style.display = 'flex';
+        taskDetailsText.textContent = `${newTask.description}`
+      })
+    });
   }
 
   function clearContent() {
