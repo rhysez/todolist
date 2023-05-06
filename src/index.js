@@ -75,67 +75,106 @@ export class Group {
   }
 }
 
+ // creates the new task object
 export const addTaskLogic = (() => {
   const tasks = []; // contains task objects
-  const taskDivs = []; // contains task div elements
   let taskId = 1;
 
-  getSection.addTask.addEventListener("click", () => {
-    taskBox.style.display = "flex";
-  });
-
-  // adds the visual task to the app
-  function addTaskContent() {
+  function loadTasks() {
     let task = document.createElement("div");
     let title = document.createElement("div");
     let date = document.createElement("div");
-
-    task.classList.add("task");
-    getSection.content.appendChild(task);
-
-    task.id = taskId++;
-
-    title.classList.add("taskTitle");
-    title.textContent = taskTitle.value;
-    task.appendChild(title);
-
-    date.textContent = taskDueDate.value;
-    task.appendChild(date);
-
-    if (taskPriority.value === "low") {
-      task.style.backgroundColor = "var(--taskLow)";
-    }
-
-    if (taskPriority.value === "medium") {
-      task.style.backgroundColor = "var(--taskMedium)";
-    }
-
-    if (taskPriority.value === "high") {
-      task.style.backgroundColor = "var(--taskHigh)";
-    }
-
-    taskDivs.push(task);
-    console.log(taskDivs);
-  }
-
-  // creates the new task object
-  getSection.taskSubmit.addEventListener("click", () => {
-    event.preventDefault();
     let newTask = new Task(
       taskTitle.value,
       taskDescription.value,
       taskDueDate.value,
       taskPriority.value
     );
-    taskBox.style.display = "none";
-    addTaskContent();
+
     tasks.push(newTask);
+
+    tasks.forEach((item, i) => {
+      task.classList.add("task");
+      getSection.content.appendChild(task);
+
+      task.id = taskId++;
+
+      title.classList.add("taskTitle");
+      title.textContent = taskTitle.value;
+      task.appendChild(title);
+
+      date.textContent = taskDueDate.value;
+      task.appendChild(date);
+
+      if (taskPriority.value === "low") {
+        task.style.backgroundColor = "var(--taskLow)";
+      }
+
+      if (taskPriority.value === "medium") {
+        task.style.backgroundColor = "var(--taskMedium)";
+      }
+
+      if (taskPriority.value === "high") {
+        task.style.backgroundColor = "var(--taskHigh)";
+      }
+    });
+  }
+
+  function reloadTasks() {
+    tasks.forEach((item, i) => {
+      let task = document.createElement("div");
+      let title = document.createElement("div");
+      let date = document.createElement("div");
+
+      task.classList.add('task');
+      getSection.content.appendChild(task)
+
+      title.classList.add("taskTitle");
+      title.textContent = `${tasks[i].title}`;
+      task.appendChild(title);
+
+      date.textContent = `${tasks[i].dueDate}`;
+      task.appendChild(date);
+
+      if (tasks[i].priority === "low") {
+        task.style.backgroundColor = "var(--taskLow)";
+      }
+
+      if (tasks[i].priority === "medium") {
+        task.style.backgroundColor = "var(--taskMedium)";
+      }
+
+      if (tasks[i].priority === "high") {
+        task.style.backgroundColor = "var(--taskHigh)";
+      }
+    });
+  }
+
+  function clearContent() {
+    while (content.firstChild) {
+      content.removeChild(content.lastChild);
+    }
+  }
+
+  getSection.addTask.addEventListener("click", () => {
+    taskBox.style.display = "flex";
+  });
+
+  getSection.taskSubmit.addEventListener("click", () => {
+    event.preventDefault();
+    taskBox.style.display = "none";
+    loadTasks();
     console.log(tasks);
   });
 
   getSection.taskCancel.addEventListener("click", () => {
     taskBox.style.display = "none";
     event.preventDefault();
+  });
+
+  getSection.home.addEventListener("click", () => {
+    clearContent();
+    reloadTasks();
   });
 })();
 
@@ -167,28 +206,27 @@ export const newGroupLogic = (() => {
   });
 
   function loadGroups() {
-    while (content.firstChild) {
-      content.removeChild(content.lastChild);
-    }
-
     groups.forEach((group, i) => {
       let displayGroup = document.createElement("div");
       displayGroup.classList.add("task");
-      displayGroup.textContent = groups[i];
+      displayGroup.textContent = `${groups[i].title}`;
       content.appendChild(displayGroup);
     });
-  };
+  }
+
+  function clearContent() {
+    while (content.firstChild) {
+      content.removeChild(content.lastChild);
+    }
+  }
 
   getSection.groups.addEventListener("click", () => {
+    clearContent();
     loadGroups();
   });
 })();
 
 // event listeners for pageLoad functions
 export const categoryLogic = (() => {
-  getSection.home.addEventListener("click", () => {
-    while (content.firstChild) {
-      content.removeChild(content.lastChild);
-    }
-  });
+  
 })();
