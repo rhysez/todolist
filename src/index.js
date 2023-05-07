@@ -32,6 +32,7 @@ const getSection = (() => {
 
   const taskDetails = document.getElementById('taskDetais');
   const taskDetailsText = document.getElementById('taskDetailsText');
+  const taskDetailsPriority = document.getElementById('taskDetailsPriority');
   const taskDetailsCancel = document.getElementById('taskDetailsCancel')
   return {
     header,
@@ -60,6 +61,7 @@ const getSection = (() => {
     groupCancel,
     taskDetails,
     taskDetailsText,
+    taskDetailsPriority,
     taskDetailsCancel
   };
 })();
@@ -67,11 +69,12 @@ const getSection = (() => {
 export default getSection;
 
 export class Task {
-  constructor(title, description, dueDate, priority) {
+  constructor(title, description, dueDate, priority, group) {
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
+    this.group = group;
   }
 }
 
@@ -95,7 +98,8 @@ export const addTaskLogic = (() => {
       taskTitle.value,
       taskDescription.value,
       taskDueDate.value,
-      taskPriority.value
+      taskPriority.value,
+      taskGroup.value
     );
 
     tasks.push(newTask);
@@ -129,7 +133,11 @@ export const addTaskLogic = (() => {
     task.addEventListener('click', () => {
       taskDetails.style.display = 'flex';
       taskDetailsText.textContent = `${newTask.description}`
-    })
+      taskDetailsPriority.textContent = `Priority: ${newTask.priority}`
+      if (newTask.priority === 'low') {taskDetailsPriority.style.color = 'lightgreen'};
+      if (newTask.priority === 'medium') {taskDetailsPriority.style.color = 'orange'};
+      if (newTask.priority === 'high') {taskDetailsPriority.style.color = 'crimson'};
+    });
   }
 
   function reloadTasks() {
