@@ -300,3 +300,9 @@ input {
     height: clamp(2rem, 4.5vw, 4rem);
     filter: invert(26%) sepia(57%) saturate(5113%) hue-rotate(237deg) brightness(107%) contrast(102%);
 }
+
+#taskDelete {
+    width: clamp(2rem, 4.5vw, 4rem);
+    height: clamp(2rem, 4.5vw, 4rem);
+    filter: invert(26%) sepia(57%) saturate(5113%) hue-rotate(237deg) brightness(107%) contrast(102%);
+}

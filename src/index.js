@@ -103,6 +103,7 @@ export const addTaskLogic = (() => {
     let title = document.createElement("div");
     let date = document.createElement("div");
     let taskDone = document.createElement('img');
+    let taskButtons = document.createElement('div');
 
     tasks.forEach((item, i) => {
       task.classList.add("task");
@@ -112,9 +113,10 @@ export const addTaskLogic = (() => {
       task.appendChild(title);
       date.textContent = `${tasks[i].dueDate}`;
       task.appendChild(date);
+      task.appendChild(taskButtons);
       taskDone.src = '../images/check-circle.svg';
       taskDone.id = 'taskDone';
-      task.appendChild(taskDone);
+      taskButtons.appendChild(taskDone);
 
       if (tasks[i].priority === "low") {
         task.style.backgroundColor = "var(--taskLow)";
@@ -125,13 +127,13 @@ export const addTaskLogic = (() => {
       if (tasks[i].priority === "high") {
         task.style.backgroundColor = "var(--taskHigh)";
       }
-      
+
       taskDone.addEventListener('click', () => {
         event.stopPropagation();
         task.remove();
         tasks.splice(i, 1);
         console.log(tasks);
-        alert('Congrats! You have completed this task.')
+        alert('Congrats! You have completed this task.');
       });
   
       task.addEventListener("click", () => {
@@ -165,9 +167,10 @@ export const addTaskLogic = (() => {
       task.appendChild(title);
       date.textContent = `${tasks[i].dueDate}`;
       task.appendChild(date);
+      task.appendChild(taskButtons);
       taskDone.src = '../images/check-circle.svg';
       taskDone.id = 'taskDone';
-      task.appendChild(taskDone);
+      taskButtons.appendChild(taskDone);
 
       if (tasks[i].priority === "low") {
         task.style.backgroundColor = "var(--taskLow)";
