@@ -159,6 +159,7 @@ export const addTaskLogic = (() => {
       let title = document.createElement("div");
       let date = document.createElement("div");
       let taskDone = document.createElement('img');
+      let taskButtons = document.createElement('div');
 
       task.classList.add("task");
       getSection.content.appendChild(task);
