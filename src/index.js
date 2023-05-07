@@ -7,8 +7,6 @@ const getSection = (() => {
   const content = document.getElementById("content");
 
   const home = document.getElementById("home");
-  const today = document.getElementById("today");
-  const week = document.getElementById("week");
   const groups = document.getElementById("groups");
   const notes = document.getElementById("notes");
 
@@ -30,18 +28,17 @@ const getSection = (() => {
   const groupSubmit = document.getElementById("groupSubmit");
   const groupCancel = document.getElementById("groupCancel");
 
-  const taskDetails = document.getElementById('taskDetais');
-  const taskDetailsText = document.getElementById('taskDetailsText');
-  const taskDetailsPriority = document.getElementById('taskDetailsPriority');
-  const taskDetailsCancel = document.getElementById('taskDetailsCancel')
+  const taskDetails = document.getElementById("taskDetais");
+  const taskDetailsText = document.getElementById("taskDetailsText");
+  const taskDetailsPriority = document.getElementById("taskDetailsPriority");
+  const taskDetailsAddToGroup = document.getElementById('taskDetailsAddToGroup');
+  const taskDetailsCancel = document.getElementById("taskDetailsCancel");
   return {
     header,
     main,
     sidebar,
     content,
     home,
-    today,
-    week,
     groups,
     notes,
     addTask,
@@ -62,7 +59,8 @@ const getSection = (() => {
     taskDetails,
     taskDetailsText,
     taskDetailsPriority,
-    taskDetailsCancel
+    taskDetailsAddToGroup,
+    taskDetailsCancel,
   };
 })();
 
@@ -85,15 +83,12 @@ export class Group {
   }
 }
 
- // creates the new task object
+// creates the new task object
 export const addTaskLogic = (() => {
   const tasks = []; // contains task objects
   let taskId = 1;
 
   function loadTasks() {
-    let task = document.createElement("div");
-    let title = document.createElement("div");
-    let date = document.createElement("div");
     let newTask = new Task(
       taskTitle.value,
       taskDescription.value,
@@ -104,75 +99,108 @@ export const addTaskLogic = (() => {
 
     tasks.push(newTask);
 
+    let task = document.createElement("div");
+    let title = document.createElement("div");
+    let date = document.createElement("div");
+    let taskDone = document.createElement('img');
+
     tasks.forEach((item, i) => {
       task.classList.add("task");
       getSection.content.appendChild(task);
-
-      task.id = taskId++;
-
-      title.classList.add("taskTitle");
-      title.textContent = taskTitle.value;
-      task.appendChild(title);
-
-      date.textContent = taskDueDate.value;
-      task.appendChild(date);
-
-      if (taskPriority.value === "low") {
-        task.style.backgroundColor = "var(--taskLow)";
-      }
-
-      if (taskPriority.value === "medium") {
-        task.style.backgroundColor = "var(--taskMedium)";
-      }
-
-      if (taskPriority.value === "high") {
-        task.style.backgroundColor = "var(--taskHigh)";
-      }
-    });
-
-    task.addEventListener('click', () => {
-      taskDetails.style.display = 'flex';
-      taskDetailsText.textContent = `${newTask.description}`
-      taskDetailsPriority.textContent = `Priority: ${newTask.priority}`
-      if (newTask.priority === 'low') {taskDetailsPriority.style.color = 'lightgreen'};
-      if (newTask.priority === 'medium') {taskDetailsPriority.style.color = 'orange'};
-      if (newTask.priority === 'high') {taskDetailsPriority.style.color = 'crimson'};
-    });
-  }
-
-  function reloadTasks() {
-
-    tasks.forEach((item, i) => {
-      let task = document.createElement("div");
-      let title = document.createElement("div");
-      let date = document.createElement("div");
-
-      task.classList.add('task');
-      getSection.content.appendChild(task)
-
       title.classList.add("taskTitle");
       title.textContent = `${tasks[i].title}`;
       task.appendChild(title);
-
       date.textContent = `${tasks[i].dueDate}`;
       task.appendChild(date);
+      taskDone.src = '../images/check-circle.svg';
+      taskDone.id = 'taskDone';
+      task.appendChild(taskDone);
 
       if (tasks[i].priority === "low") {
         task.style.backgroundColor = "var(--taskLow)";
       }
-
       if (tasks[i].priority === "medium") {
         task.style.backgroundColor = "var(--taskMedium)";
       }
+      if (tasks[i].priority === "high") {
+        task.style.backgroundColor = "var(--taskHigh)";
+      }
+      
+      taskDone.addEventListener('click', () => {
+        event.stopPropagation();
+        task.remove();
+        tasks.splice(i, 1);
+        console.log(tasks);
+        alert('Congrats! You have completed this task.')
+      });
+  
+      task.addEventListener("click", () => {
+        taskDetails.style.display = "flex";
+        taskDetailsText.textContent = `${newTask.description}`;
+        taskDetailsPriority.textContent = `Priority: ${newTask.priority}`;
+        if (newTask.priority === "low") {
+          taskDetailsPriority.style.color = "lightgreen";
+        }
+        if (newTask.priority === "medium") {
+          taskDetailsPriority.style.color = "orange";
+        }
+        if (newTask.priority === "high") {
+          taskDetailsPriority.style.color = "crimson";
+        }
+      });
+    });
+  }
 
+  function reloadTasks() {
+    tasks.forEach((item, i) => {
+      let task = document.createElement("div");
+      let title = document.createElement("div");
+      let date = document.createElement("div");
+      let taskDone = document.createElement('img');
+
+      task.classList.add("task");
+      getSection.content.appendChild(task);
+      title.classList.add("taskTitle");
+      title.textContent = `${tasks[i].title}`;
+      task.appendChild(title);
+      date.textContent = `${tasks[i].dueDate}`;
+      task.appendChild(date);
+      taskDone.src = '../images/check-circle.svg';
+      taskDone.id = 'taskDone';
+      task.appendChild(taskDone);
+
+      if (tasks[i].priority === "low") {
+        task.style.backgroundColor = "var(--taskLow)";
+      }
+      if (tasks[i].priority === "medium") {
+        task.style.backgroundColor = "var(--taskMedium)";
+      }
       if (tasks[i].priority === "high") {
         task.style.backgroundColor = "var(--taskHigh)";
       }
 
-      task.addEventListener('click', () => {
-        taskDetails.style.display = 'flex';
-        taskDetailsText.textContent = `${newTask.description}`
-      })
+      taskDone.addEventListener('click', () => {
+        event.stopPropagation();
+        task.remove();
+        tasks.splice(i, 1);
+        console.log(tasks);
+        alert('Congrats! You have completed this task.')
+      });
+
+      task.addEventListener("click", () => {
+        taskDetails.style.display = "flex";
+        taskDetailsText.textContent = `${newTask.description}`;
+        taskDetailsPriority.textContent = `Priority: ${newTask.priority}`;
+        if (newTask.priority === "low") {
+          taskDetailsPriority.style.color = "lightgreen";
+        }
+        if (newTask.priority === "medium") {
+          taskDetailsPriority.style.color = "orange";
+        }
+        if (newTask.priority === "high") {
+          taskDetailsPriority.style.color = "crimson";
+        }
+      });
     });
   }
 
@@ -185,36 +213,30 @@ export const addTaskLogic = (() => {
   getSection.addTask.addEventListener("click", () => {
     taskBox.style.display = "flex";
   });
-
   getSection.taskSubmit.addEventListener("click", () => {
     event.preventDefault();
     taskBox.style.display = "none";
     loadTasks();
     console.log(tasks);
   });
-
   getSection.taskCancel.addEventListener("click", () => {
     taskBox.style.display = "none";
     event.preventDefault();
   });
-
   getSection.home.addEventListener("click", () => {
     clearContent();
     reloadTasks();
   });
-
-  getSection.taskDetailsCancel.addEventListener('click', () => {
-    taskDetails.style.display = 'none';
-  })
+  getSection.taskDetailsCancel.addEventListener("click", () => {
+    taskDetails.style.display = "none";
+  });
 })();
 
 export const newGroupLogic = (() => {
   const groups = [];
-
   getSection.newGroup.addEventListener("click", () => {
     groupBox.style.display = "flex";
   });
-
   getSection.groupSubmit.addEventListener("click", () => {
     event.preventDefault();
     let group = new Group(groupTitle.value);
@@ -255,5 +277,3 @@ export const newGroupLogic = (() => {
     loadGroups();
   });
 })();
-
-
