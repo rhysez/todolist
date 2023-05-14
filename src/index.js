@@ -305,7 +305,7 @@ export const newGroupLogic = (() => {
 })();
 
 export const toggleDarkMode = (() => {
-  const titleYour = document.getElementsByClassName('titleYour')
+  const titleYour = document.querySelector('.titleYour')
 
   getSection.darkMode.addEventListener('click', () => {
     if (document.body.style.backgroundColor !== 'var(--bodyColorDark)') {
