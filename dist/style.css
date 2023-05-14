@@ -7,6 +7,7 @@
     --sidebarColor: rgb(247, 247, 247);
     --textColor: rgb(66, 66, 66);
 
+    --bodyColorDark: rgb(53, 53, 53);
 
     --taskGeneric: rgb(78, 78, 253, 0.75);
     --taskLow: rgba(21, 219, 21, 0.5);
@@ -147,6 +148,20 @@ input {
     height: 80vh;
     padding: 2rem;
     background-color: var(--containerColor);
+    box-shadow: 1.75px 1.75px 5px rgb(78, 78, 78);
+    border-radius: 10px;
+    font-size: 3rem;
+}
+
+#containerDark {
+    background-color: var(--containerColorDark);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 80%;
+    height: 80vh;
+    padding: 2rem;
+    background-color: var(--containerColorDark);
     box-shadow: 1.75px 1.75px 5px rgb(78, 78, 78);
     border-radius: 10px;
     font-size: 3rem;

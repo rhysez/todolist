@@ -1,6 +1,7 @@
 const getSection = (() => {
   "use strict";
 
+  const container = document.getElementById('container');
   const header = document.getElementById("header");
   const main = document.getElementById("main");
   const sidebar = document.getElementById("sidebar");
@@ -33,6 +34,7 @@ const getSection = (() => {
   const taskDetailsPriority = document.getElementById("taskDetailsPriority");
   const taskDetailsCancel = document.getElementById("taskDetailsCancel");
   return {
+    container,
     header,
     main,
     sidebar,
@@ -300,4 +302,14 @@ export const newGroupLogic = (() => {
     clearContent();
     loadGroups();
   });
+})();
+
+export const toggleDarkMode = (() => {
+  getSection.darkMode.addEventListener('click', () => {
+    if (document.body.style.backgroundColor !== 'var(--bodyColorDark)') {
+      document.body.style.backgroundColor = 'var(--bodyColorDark)'
+    } else {
+      document.body.style.backgroundColor = 'var(--bodyColor)'
+    }
+  }) 
 })();
