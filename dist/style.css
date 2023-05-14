@@ -306,3 +306,9 @@ input {
     height: clamp(2rem, 4.5vw, 4rem);
     filter: invert(26%) sepia(57%) saturate(5113%) hue-rotate(237deg) brightness(107%) contrast(102%);
 }
+
+#deleteGroup {
+    width: clamp(2rem, 4.5vw, 4rem);
+    height: clamp(2rem, 4.5vw, 4rem);
+    filter: invert(0%) sepia(0%) saturate(7474%) hue-rotate(187deg) brightness(101%) contrast(105%);
+}

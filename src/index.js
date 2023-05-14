@@ -31,7 +31,6 @@ const getSection = (() => {
   const taskDetails = document.getElementById("taskDetais");
   const taskDetailsText = document.getElementById("taskDetailsText");
   const taskDetailsPriority = document.getElementById("taskDetailsPriority");
-  const taskDetailsAddToGroup = document.getElementById('taskDetailsAddToGroup');
   const taskDetailsCancel = document.getElementById("taskDetailsCancel");
   return {
     header,
@@ -59,7 +58,6 @@ const getSection = (() => {
     taskDetails,
     taskDetailsText,
     taskDetailsPriority,
-    taskDetailsAddToGroup,
     taskDetailsCancel,
   };
 })();
@@ -79,13 +77,16 @@ export class Task {
 export class Group {
   constructor(title) {
     this.title = title;
-    this.taskList = [];
+    this.taskList = []; // stores tasks in group
   }
 }
 
 // creates the new task object
 export const addTaskLogic = (() => {
   const tasks = []; // contains task objects
+  const tasksInGroup = tasks.filter((item) => {
+    return item.group === groups[i].title
+  });
   let taskId = 1;
 
   function loadTasks() {
@@ -101,6 +102,7 @@ export const addTaskLogic = (() => {
 
     let task = document.createElement("div");
     let title = document.createElement("div");
+    let group = document.createElement('div');
     let date = document.createElement("div");
     let taskDone = document.createElement('img');
     let taskButtons = document.createElement('div');
@@ -111,6 +113,8 @@ export const addTaskLogic = (() => {
       title.classList.add("taskTitle");
       title.textContent = `${tasks[i].title}`;
       task.appendChild(title);
+      group.textContent = `${tasks[i].group}`;
+      task.appendChild(group);
       date.textContent = `${tasks[i].dueDate}`;
       task.appendChild(date);
       task.appendChild(taskButtons);
@@ -238,6 +242,7 @@ export const addTaskLogic = (() => {
 
 export const newGroupLogic = (() => {
   const groups = [];
+
   getSection.newGroup.addEventListener("click", () => {
     groupBox.style.display = "flex";
   });
@@ -261,12 +266,27 @@ export const newGroupLogic = (() => {
     event.preventDefault();
   });
 
-  function loadGroups() {
+  function loadGroups() { 
     groups.forEach((group, i) => {
       let displayGroup = document.createElement("div");
+      let deleteGroup = document.createElement('img');
+
       displayGroup.classList.add("task");
       displayGroup.textContent = `${groups[i].title}`;
+      deleteGroup.src = '../images/delete-circle.svg';
+      deleteGroup.id = 'deleteGroup';
       content.appendChild(displayGroup);
+      displayGroup.appendChild(deleteGroup);
+      displayGroup.addEventListener('click', () => {
+        console.log(addTaskLogic.tasksInGroup)
+      })
+
+      deleteGroup.addEventListener('click', () => {
+        event.stopPropagation();
+        displayGroup.remove();
+        groups.splice(i, 1);
+        console.log(groups);
+      });
     });
   }
 
