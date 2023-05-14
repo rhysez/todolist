@@ -305,11 +305,17 @@ export const newGroupLogic = (() => {
 })();
 
 export const toggleDarkMode = (() => {
+  const titleYour = document.getElementsByClassName('titleYour')
+
   getSection.darkMode.addEventListener('click', () => {
     if (document.body.style.backgroundColor !== 'var(--bodyColorDark)') {
       document.body.style.backgroundColor = 'var(--bodyColorDark)'
+      getSection.container.style.backgroundColor = 'var(--containerColorDark)'
+      titleYour.style.color = 'var(--titleYourDark)';
     } else {
-      document.body.style.backgroundColor = 'var(--bodyColor)'
+      document.body.style.backgroundColor = 'var(--bodyColor)';
+      getSection.container.style.backgroundColor = 'var(--containerColor)';
+      titleYour.style.color = 'var(--titleYour)';
     }
   }) 
 })();

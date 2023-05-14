@@ -6,8 +6,11 @@
     --accentColor: rgb(80, 80, 255);
     --sidebarColor: rgb(247, 247, 247);
     --textColor: rgb(66, 66, 66);
+    --titleYour: rgb(66, 66, 66);
 
     --bodyColorDark: rgb(53, 53, 53);
+    --containerColorDark: rgb(59, 59, 59);
+    --titleYourDark: rgb(102, 102, 102);
 
     --taskGeneric: rgb(78, 78, 253, 0.75);
     --taskLow: rgba(21, 219, 21, 0.5);
@@ -153,22 +156,8 @@ input {
     font-size: 3rem;
 }
 
-#containerDark {
-    background-color: var(--containerColorDark);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    width: 80%;
-    height: 80vh;
-    padding: 2rem;
-    background-color: var(--containerColorDark);
-    box-shadow: 1.75px 1.75px 5px rgb(78, 78, 78);
-    border-radius: 10px;
-    font-size: 3rem;
-}
-
 .titleYour {
-    color: rgb(66, 66, 66)
+    color: var(--titleYour);
 }
 
 .titleDoing {
