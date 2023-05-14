@@ -84,9 +84,6 @@ export class Group {
 // creates the new task object
 export const addTaskLogic = (() => {
   const tasks = []; // contains task objects
-  const tasksInGroup = tasks.filter((item) => {
-    return item.group === groups[i].title
-  });
   let taskId = 1;
 
   function loadTasks() {
@@ -161,6 +158,7 @@ export const addTaskLogic = (() => {
     tasks.forEach((item, i) => {
       let task = document.createElement("div");
       let title = document.createElement("div");
+      let group = document.createElement('div');
       let date = document.createElement("div");
       let taskDone = document.createElement('img');
       let taskButtons = document.createElement('div');
@@ -170,6 +168,8 @@ export const addTaskLogic = (() => {
       title.classList.add("taskTitle");
       title.textContent = `${tasks[i].title}`;
       task.appendChild(title);
+      group.textContent = `${tasks[i].group}`;
+      task.appendChild(group);
       date.textContent = `${tasks[i].dueDate}`;
       task.appendChild(date);
       task.appendChild(taskButtons);
