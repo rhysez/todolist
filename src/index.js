@@ -342,6 +342,7 @@ export const newNoteLogic = (() => {
       let deleteNote = document.createElement("img");
 
       displayNote.classList.add("task");
+      displayNote.style.backgroundColor = 'var(--noteGeneric)'
       displayNote.textContent = `${notes[i].title}`;
       deleteNote.src = "../images/delete-circle.svg";
       deleteNote.id = "deleteNote";
