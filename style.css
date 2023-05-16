@@ -17,6 +17,8 @@
     --taskLow: rgba(21, 219, 21, 0.5);
     --taskMedium: rgb(243, 168, 28, 0.5);
     --taskHigh: rgb(226, 25, 25, 0.5);
+
+    --noteGeneric: rgba(73, 197, 255, 0.75);
 }
 
 @keyframes fadeIn {
