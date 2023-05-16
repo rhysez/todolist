@@ -1,7 +1,7 @@
 const getSection = (() => {
   "use strict";
 
-  const container = document.getElementById('container');
+  const container = document.getElementById("container");
   const header = document.getElementById("header");
   const main = document.getElementById("main");
   const sidebar = document.getElementById("sidebar");
@@ -13,6 +13,7 @@ const getSection = (() => {
 
   const addTask = document.getElementById("addTaskButton");
   const newGroup = document.getElementById("newGroupButton");
+  const newNote = document.getElementById("newNoteButton");
   const darkMode = document.getElementById("darkModeButton");
 
   const taskBox = document.getElementById("taskBox");
@@ -33,6 +34,17 @@ const getSection = (() => {
   const taskDetailsText = document.getElementById("taskDetailsText");
   const taskDetailsPriority = document.getElementById("taskDetailsPriority");
   const taskDetailsCancel = document.getElementById("taskDetailsCancel");
+
+  const noteBox = document.getElementById("noteBox");
+  const noteTitle = document.getElementById("noteTitle");
+  const noteBody = document.getElementById("noteBody");
+  const noteSubmit = document.getElementById("noteSubmit");
+  const noteCancel = document.getElementById("noteCancel");
+
+  const noteDetails = document.getElementById("noteDetails");
+  const noteDetailsText = document.getElementById("noteDetailsText");
+  const noteDetailsCancel = document.getElementById("noteDetailsCancel");
+
   return {
     container,
     header,
@@ -44,6 +56,7 @@ const getSection = (() => {
     notes,
     addTask,
     newGroup,
+    newNote,
     darkMode,
     taskBox,
     taskTitle,
@@ -61,6 +74,14 @@ const getSection = (() => {
     taskDetailsText,
     taskDetailsPriority,
     taskDetailsCancel,
+    noteBox,
+    noteTitle,
+    noteBody,
+    noteSubmit,
+    noteCancel,
+    noteDetails,
+    noteDetailsText,
+    noteDetailsCancel,
   };
 })();
 
@@ -79,7 +100,13 @@ export class Task {
 export class Group {
   constructor(title) {
     this.title = title;
-    this.taskList = []; // stores tasks in group
+  }
+}
+
+export class Note {
+  constructor(title, body) {
+    this.title = title;
+    this.body = body;
   }
 }
 
@@ -101,10 +128,10 @@ export const addTaskLogic = (() => {
 
     let task = document.createElement("div");
     let title = document.createElement("div");
-    let group = document.createElement('div');
+    let group = document.createElement("div");
     let date = document.createElement("div");
-    let taskDone = document.createElement('img');
-    let taskButtons = document.createElement('div');
+    let taskDone = document.createElement("img");
+    let taskButtons = document.createElement("div");
 
     tasks.forEach((item, i) => {
       task.classList.add("task");
@@ -117,8 +144,8 @@ export const addTaskLogic = (() => {
       date.textContent = `${tasks[i].dueDate}`;
       task.appendChild(date);
       task.appendChild(taskButtons);
-      taskDone.src = '../images/check-circle.svg';
-      taskDone.id = 'taskDone';
+      taskDone.src = "../images/check-circle.svg";
+      taskDone.id = "taskDone";
       taskButtons.appendChild(taskDone);
 
       if (tasks[i].priority === "low") {
@@ -131,14 +158,14 @@ export const addTaskLogic = (() => {
         task.style.backgroundColor = "var(--taskHigh)";
       }
 
-      taskDone.addEventListener('click', () => {
+      taskDone.addEventListener("click", () => {
         event.stopPropagation();
         task.remove();
         tasks.splice(i, 1);
         console.log(tasks);
-        alert('Congrats! You have completed this task.');
+        alert("Congrats! You have completed this task.");
       });
-  
+
       task.addEventListener("click", () => {
         taskDetails.style.display = "flex";
         taskDetailsText.textContent = `${newTask.description}`;
@@ -160,10 +187,10 @@ export const addTaskLogic = (() => {
     tasks.forEach((item, i) => {
       let task = document.createElement("div");
       let title = document.createElement("div");
-      let group = document.createElement('div');
+      let group = document.createElement("div");
       let date = document.createElement("div");
-      let taskDone = document.createElement('img');
-      let taskButtons = document.createElement('div');
+      let taskDone = document.createElement("img");
+      let taskButtons = document.createElement("div");
 
       task.classList.add("task");
       getSection.content.appendChild(task);
@@ -175,8 +202,8 @@ export const addTaskLogic = (() => {
       date.textContent = `${tasks[i].dueDate}`;
       task.appendChild(date);
       task.appendChild(taskButtons);
-      taskDone.src = '../images/check-circle.svg';
-      taskDone.id = 'taskDone';
+      taskDone.src = "../images/check-circle.svg";
+      taskDone.id = "taskDone";
       taskButtons.appendChild(taskDone);
 
       if (tasks[i].priority === "low") {
@@ -189,12 +216,12 @@ export const addTaskLogic = (() => {
         task.style.backgroundColor = "var(--taskHigh)";
       }
 
-      taskDone.addEventListener('click', () => {
+      taskDone.addEventListener("click", () => {
         event.stopPropagation();
         task.remove();
         tasks.splice(i, 1);
         console.log(tasks);
-        alert('Congrats! You have completed this task.')
+        alert("Congrats! You have completed this task.");
       });
 
       task.addEventListener("click", () => {
@@ -268,22 +295,18 @@ export const newGroupLogic = (() => {
     event.preventDefault();
   });
 
-  function loadGroups() { 
+  function loadGroups() {
     groups.forEach((group, i) => {
       let displayGroup = document.createElement("div");
-      let deleteGroup = document.createElement('img');
+      let deleteGroup = document.createElement("img");
 
       displayGroup.classList.add("task");
       displayGroup.textContent = `${groups[i].title}`;
-      deleteGroup.src = '../images/delete-circle.svg';
-      deleteGroup.id = 'deleteGroup';
+      deleteGroup.src = "../images/delete-circle.svg";
+      deleteGroup.id = "deleteGroup";
       content.appendChild(displayGroup);
       displayGroup.appendChild(deleteGroup);
-      displayGroup.addEventListener('click', () => {
-        console.log(addTaskLogic.tasksInGroup)
-      })
-
-      deleteGroup.addEventListener('click', () => {
+      deleteGroup.addEventListener("click", () => {
         event.stopPropagation();
         displayGroup.remove();
         groups.splice(i, 1);
@@ -304,18 +327,76 @@ export const newGroupLogic = (() => {
   });
 })();
 
-export const toggleDarkMode = (() => {
-  const titleYour = document.querySelector('.titleYour')
+export const newNoteLogic = (() => {
+  const notes = [];
 
-  getSection.darkMode.addEventListener('click', () => {
-    if (document.body.style.backgroundColor !== 'var(--bodyColorDark)') {
-      document.body.style.backgroundColor = 'var(--bodyColorDark)'
-      getSection.container.style.backgroundColor = 'var(--containerColorDark)'
-      titleYour.style.color = 'var(--titleYourDark)';
-    } else {
-      document.body.style.backgroundColor = 'var(--bodyColor)';
-      getSection.container.style.backgroundColor = 'var(--containerColor)';
-      titleYour.style.color = 'var(--titleYour)';
+  function clearContent() {
+    while (content.firstChild) {
+      content.removeChild(content.lastChild);
     }
-  }) 
+  }
+
+  function loadNotes() {
+    notes.forEach((note, i) => {
+      let displayNote = document.createElement("div");
+      let deleteNote = document.createElement("img");
+
+      displayNote.classList.add("task");
+      displayNote.textContent = `${notes[i].title}`;
+      deleteNote.src = "../images/delete-circle.svg";
+      deleteNote.id = "deleteNote";
+      content.appendChild(displayNote);
+      displayNote.appendChild(deleteNote);
+      deleteNote.addEventListener("click", () => {
+        event.stopPropagation();
+        displayNote.remove();
+        notes.splice(i, 1);
+        console.log(notes);
+      });
+
+      displayNote.addEventListener("click", () => {
+        noteDetails.style.display = "flex";
+        noteDetailsText.textContent = `${notes[i].body}`;
+      });
+    });
+  }
+
+  getSection.newNote.addEventListener("click", () => {
+    noteBox.style.display = "flex";
+  });
+  getSection.noteSubmit.addEventListener("click", () => {
+    event.preventDefault();
+    noteBox.style.display = "none";
+    const newNote = new Note(noteTitle.value, noteBody.value);
+    notes.push(newNote);
+    console.log(notes);
+  });
+  getSection.noteCancel.addEventListener("click", () => {
+    event.preventDefault();
+    noteBox.style.display = "none";
+  });
+  getSection.notes.addEventListener("click", () => {
+    clearContent();
+    loadNotes();
+  });
+  getSection.noteDetailsCancel.addEventListener("click", () => {
+    noteDetails.style.display = "none";
+    event.preventDefault();
+  });
+})();
+
+export const toggleDarkMode = (() => {
+  const titleYour = document.querySelector(".titleYour");
+
+  getSection.darkMode.addEventListener("click", () => {
+    if (document.body.style.backgroundColor !== "var(--bodyColorDark)") {
+      document.body.style.backgroundColor = "var(--bodyColorDark)";
+      getSection.container.style.backgroundColor = "var(--containerColorDark)";
+      titleYour.style.color = "var(--titleYourDark)";
+    } else {
+      document.body.style.backgroundColor = "var(--bodyColor)";
+      getSection.container.style.backgroundColor = "var(--containerColor)";
+      titleYour.style.color = "var(--titleYour)";
+    }
+  });
 })();

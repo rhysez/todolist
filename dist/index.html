@@ -14,6 +14,7 @@
             <div id="headerButtons">
                 <img src="../images/plus-circle.svg" alt="newtask" class="headerButton" id="addTaskButton">
                 <img src="../images/format-list-group-plus.svg" alt="newGroup" class="headerButton" id="newGroupButton">
+                <img src="../images/note-edit.svg" alt="newnote" class="headerButton" id="newNoteButton">
                 <img src="../images/lightbulb-on-outline.svg" alt="darkmode" class="headerButton" id="darkModeButton">
             </div>
         </div>
@@ -66,6 +67,23 @@
                     <div id="taskDetailsText"></div>
                     <div id="taskDetailsPriority"></div>
                     <button id="taskDetailsCancel" class="formButton">Close</button>
+                </div>
+            </div>
+            <div id="noteBox">
+                <form id="noteForm">
+                    <label for="noteTitle">Note title:</label>
+                    <input type="text" name="noteTitle" id="noteTitle">
+
+                    <textarea type="text" name="noteBody" id="noteBody" wrap="soft"></textarea>
+
+                    <button type="submit" id="noteSubmit" class="formButton">Add note</button>
+                    <button id="noteCancel" class="formButton">Cancel</button>
+                </form>
+            </div>
+            <div id="noteDetails">
+                <div id="noteDetailsBox">
+                    <div id="noteDetailsText"></div>
+                    <button id="noteDetailsCancel" class="formButton">Close</button>
                 </div>
             </div>
             <div id="sidebar">
