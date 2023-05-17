@@ -13,9 +13,9 @@
     --textDark: rgb(219, 219, 219);
 
     --taskGeneric: rgb(78, 78, 253, 0.75);
-    --taskLow: rgba(21, 219, 21, 0.5);
+    --taskLow: rgba(96, 245, 96, 0.5);
     --taskMedium: rgb(243, 168, 28, 0.5);
-    --taskHigh: rgb(226, 25, 25, 0.5);
+    --taskHigh: rgba(226, 25, 25, 0.5);
 
     --noteGeneric: rgba(73, 197, 255, 0.75);
 }
@@ -47,6 +47,7 @@ body {
     padding: 0;
     min-height: 100vh;
     font-family: 'Lexend Deca', sans-serif;
+    transition: all .15s ease-in-out;
 }
 
 #taskDetails,
@@ -171,10 +172,12 @@ input {
     box-shadow: 1.75px 1.75px 5px rgb(78, 78, 78);
     border-radius: 10px;
     font-size: 3rem;
+    transition: all .15s ease-in-out;
 }
 
 .titleYour {
     color: var(--titleYour);
+    transition: all .15s ease-in-out;
 }
 
 .titleDoing {
@@ -200,6 +203,7 @@ input {
     flex-wrap: wrap;
     justify-content: space-between;
     position: relative;
+    transition: all .15s ease-in-out;
 }
 
 #sidebar {
@@ -210,6 +214,7 @@ input {
     flex-direction: column;
     justify-content: space-between;
     font-size: clamp(1rem, 2.5vw, 2rem);
+    transition: all .15s ease-in-out;
 }
 
 #optionsBar {
@@ -219,6 +224,7 @@ input {
     justify-content: flex-start;
     gap: 1rem;
     height: 90%;
+    transition: all .15s ease-in-out;
 }
 
 .options {
@@ -288,6 +294,7 @@ input {
     width: 74%;
     background-color: var(--sidebarColor);
     border-radius: 7.5px;
+    transition: all .15s ease-in-out;
 }
 
 .task {
