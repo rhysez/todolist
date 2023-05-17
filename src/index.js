@@ -226,15 +226,15 @@ export const addTaskLogic = (() => {
 
       task.addEventListener("click", () => {
         taskDetails.style.display = "flex";
-        taskDetailsText.textContent = `${newTask.description}`;
-        taskDetailsPriority.textContent = `Priority: ${newTask.priority}`;
-        if (newTask.priority === "low") {
+        taskDetailsText.textContent = `${tasks[i].description}`;
+        taskDetailsPriority.textContent = `Priority: ${tasks[i].priority}`;
+        if (tasks[i].priority === "low") {
           taskDetailsPriority.style.color = "lightgreen";
         }
-        if (newTask.priority === "medium") {
+        if (tasks[i].priority === "medium") {
           taskDetailsPriority.style.color = "orange";
         }
-        if (newTask.priority === "high") {
+        if (tasks[i].priority === "high") {
           taskDetailsPriority.style.color = "crimson";
         }
       });
@@ -393,11 +393,29 @@ export const toggleDarkMode = (() => {
     if (document.body.style.backgroundColor !== "var(--bodyColorDark)") {
       document.body.style.backgroundColor = "var(--bodyColorDark)";
       getSection.container.style.backgroundColor = "var(--containerColorDark)";
-      titleYour.style.color = "var(--titleYourDark)";
+
+      getSection.content.style.backgroundColor = "var(--boxesDark)";
+      getSection.home.style.backgroundColor = "var(--boxesDark)";
+      getSection.groups.style.backgroundColor = "var(--boxesDark)";
+      getSection.notes.style.backgroundColor = "var(--boxesDark)";
+
+      getSection.home.style.color = "var(--textDark)";
+      getSection.groups.style.color = "var(--textDark)";
+      getSection.notes.style.color = "var(--textDark)";
+      titleYour.style.color = "var(--textDark)";
     } else {
       document.body.style.backgroundColor = "var(--bodyColor)";
       getSection.container.style.backgroundColor = "var(--containerColor)";
-      titleYour.style.color = "var(--titleYour)";
+
+      getSection.content.style.backgroundColor = "var(--sidebarColor)";
+      getSection.home.style.backgroundColor = "var(--sidebarColor)";
+      getSection.groups.style.backgroundColor = "var(--sidebarColor)";
+      getSection.notes.style.backgroundColor = "var(--sidebarColor)";
+
+      getSection.home.style.color = "var(--textColor)";
+      getSection.groups.style.color = "var(--textColor)";
+      getSection.notes.style.color = "var(--textColor)";
+      titleYour.style.color = "var(--textColor)";
     }
   });
 })();
