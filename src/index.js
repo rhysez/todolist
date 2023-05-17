@@ -393,6 +393,7 @@ export const toggleDarkMode = (() => {
     if (document.body.style.backgroundColor !== "var(--bodyColorDark)") {
       document.body.style.backgroundColor = "var(--bodyColorDark)";
       getSection.container.style.backgroundColor = "var(--containerColorDark)";
+      getSection.darkMode.src = "../images/weather-night.svg";
 
       getSection.content.style.backgroundColor = "var(--boxesDark)";
       getSection.home.style.backgroundColor = "var(--boxesDark)";
@@ -406,6 +407,7 @@ export const toggleDarkMode = (() => {
     } else {
       document.body.style.backgroundColor = "var(--bodyColor)";
       getSection.container.style.backgroundColor = "var(--containerColor)";
+      getSection.darkMode.src = "../images/lightbulb-on-outline.svg";
 
       getSection.content.style.backgroundColor = "var(--sidebarColor)";
       getSection.home.style.backgroundColor = "var(--sidebarColor)";
