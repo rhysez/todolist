@@ -147,7 +147,7 @@ export const addTaskLogic = (() => {
       taskDone.src = "../images/check-circle.svg";
       taskDone.id = "taskDone";
       taskButtons.appendChild(taskDone);
-      localStorage.setItem('tasks', JSON.stringify(tasks)) // TO FIX - currently overrides same key for each task submitted
+      localStorage.setItem('tasks', JSON.stringify(tasks)) 
 
       if (tasks[i].priority === "low") {
         task.style.backgroundColor = "var(--taskLow)";
@@ -431,7 +431,8 @@ export const localStorageFunctions = (() => {
     localStorage.setItem('tasks', JSON.stringify(tasks))
   }
 
-  let storedTasks = localStorage.getItem('tasks');
+  let storedTasks = JSON.parse(localStorage.getItem('tasks'));
+  let storedTasksLength = JSON.parse(localStorage.getItem('tasks')).length;
   let storedGroups = localStorage.getItem('groups');
   let storedNotes = localStorage.getItem('notes');
 
@@ -442,7 +443,7 @@ export const localStorageFunctions = (() => {
   let taskDone = document.createElement("img");
   let taskButtons = document.createElement("div");
 
-  for (let i = 0; i < storedTasks.length; i++){
+  for (let i = 0; i < storedTasksLength; i++){ // only displays last task - FIX
     task.classList.add("task");
     getSection.content.appendChild(task);
     title.classList.add("taskTitle");
@@ -457,4 +458,5 @@ export const localStorageFunctions = (() => {
     taskDone.id = "taskDone";
     taskButtons.appendChild(taskDone);
   }
+
 })();
