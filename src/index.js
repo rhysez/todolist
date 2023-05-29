@@ -147,6 +147,7 @@ export const addTaskLogic = (() => {
       taskDone.src = "../images/check-circle.svg";
       taskDone.id = "taskDone";
       taskButtons.appendChild(taskDone);
+      localStorage.setItem('tasks', JSON.stringify(tasks)) // TO FIX - currently overrides same key for each task submitted
 
       if (tasks[i].priority === "low") {
         task.style.backgroundColor = "var(--taskLow)";
@@ -288,6 +289,8 @@ export const newGroupLogic = (() => {
     option.id = group.title;
     option.textContent = group.title;
     getSection.taskGroup.appendChild(option);
+
+    localStorage.setItem('groups', JSON.stringify(groups)) 
   });
 
   getSection.groupCancel.addEventListener("click", () => {
@@ -371,6 +374,7 @@ export const newNoteLogic = (() => {
     const newNote = new Note(noteTitle.value, noteBody.value);
     notes.push(newNote);
     console.log(notes);
+    localStorage.setItem('notes', JSON.stringify(notes)) 
   });
   getSection.noteCancel.addEventListener("click", () => {
     event.preventDefault();
@@ -420,4 +424,37 @@ export const toggleDarkMode = (() => {
       titleYour.style.color = "var(--textColor)";
     }
   });
+})();
+
+export const localStorageFunctions = (() => {
+  function addToLocalStorage(){
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+  }
+
+  let storedTasks = localStorage.getItem('tasks');
+  let storedGroups = localStorage.getItem('groups');
+  let storedNotes = localStorage.getItem('notes');
+
+  let task = document.createElement("div");
+  let title = document.createElement("div");
+  let group = document.createElement("div");
+  let date = document.createElement("div");
+  let taskDone = document.createElement("img");
+  let taskButtons = document.createElement("div");
+
+  for (let i = 0; i < storedTasks.length; i++){
+    task.classList.add("task");
+    getSection.content.appendChild(task);
+    title.classList.add("taskTitle");
+    title.textContent = `${storedTasks[i].title}`;
+    task.appendChild(title);
+    group.textContent = `${storedTasks[i].group}`;
+    task.appendChild(group);
+    date.textContent = `${storedTasks[i].dueDate}`;
+    task.appendChild(date);
+    task.appendChild(taskButtons);
+    taskDone.src = "../images/check-circle.svg";
+    taskDone.id = "taskDone";
+    taskButtons.appendChild(taskDone);
+  }
 })();

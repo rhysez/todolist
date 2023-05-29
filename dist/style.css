@@ -244,8 +244,6 @@ input {
 
 .options:hover {
     cursor: pointer;
-    background-color:rgb(124, 124, 255);
-    color: white;
     transform: scale(1.05);
 }
 
