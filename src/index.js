@@ -483,7 +483,8 @@ export const localStorageFunctions = (() => {
       taskDone.addEventListener("click", () => {
         event.stopPropagation();
         task.remove();
-        storedTasks.splice(i, 1); // doesnt remove from array in localStorage
+        storedTasks.splice(i, 1);
+        localStorage.setItem('tasks', JSON.stringify(storedTasks));
         alert("Congrats! You have completed this task.");
       });
   }
