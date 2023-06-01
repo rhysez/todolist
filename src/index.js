@@ -427,12 +427,8 @@ export const toggleDarkMode = (() => {
 })();
 
 export const localStorageFunctions = (() => {
-  function addToLocalStorage(){
-    localStorage.setItem('tasks', JSON.stringify(tasks))
-  }
 
   let storedTasks = JSON.parse(localStorage.getItem('tasks'));
-  let storedTasksLength = JSON.parse(localStorage.getItem('tasks')).length;
   let storedGroups = localStorage.getItem('groups');
   let storedNotes = localStorage.getItem('notes');
 
@@ -443,20 +439,23 @@ export const localStorageFunctions = (() => {
   let taskDone = document.createElement("img");
   let taskButtons = document.createElement("div");
 
-  for (let i = 0; i < storedTasksLength; i++){ // only displays last task - FIX
-    task.classList.add("task");
-    getSection.content.appendChild(task);
-    title.classList.add("taskTitle");
-    title.textContent = `${storedTasks[i].title}`;
-    task.appendChild(title);
-    group.textContent = `${storedTasks[i].group}`;
-    task.appendChild(group);
-    date.textContent = `${storedTasks[i].dueDate}`;
-    task.appendChild(date);
-    task.appendChild(taskButtons);
-    taskDone.src = "../images/check-circle.svg";
-    taskDone.id = "taskDone";
-    taskButtons.appendChild(taskDone);
+   // only displays last task - FIX
+  if (storedTasks && storedTasks.length > 0) {
+    for (let i = 0; i <= storedTasks.length; i++){
+      task.classList.add("task");
+      getSection.content.appendChild(task);
+      title.classList.add("taskTitle");
+      title.textContent = `${storedTasks[i].title}`;
+      task.appendChild(title);
+      group.textContent = `${storedTasks[i].group}`;
+      task.appendChild(group);
+      date.textContent = `${storedTasks[i].dueDate}`;
+      task.appendChild(date);
+      task.appendChild(taskButtons);
+      taskDone.src = "../images/check-circle.svg";
+      taskDone.id = "taskDone";
+      taskButtons.appendChild(taskDone);
   }
+}
 
 })();
