@@ -432,16 +432,15 @@ export const localStorageFunctions = (() => {
   let storedGroups = localStorage.getItem('groups');
   let storedNotes = localStorage.getItem('notes');
 
-  let task = document.createElement("div");
-  let title = document.createElement("div");
-  let group = document.createElement("div");
-  let date = document.createElement("div");
-  let taskDone = document.createElement("img");
-  let taskButtons = document.createElement("div");
+  if (storedTasks.length > 0) {
+    for (let i = 0; i < storedTasks.length; i++){
+      let task = document.createElement("div");
+      let title = document.createElement("div");
+      let group = document.createElement("div");
+      let date = document.createElement("div");
+      let taskDone = document.createElement("img");
+      let taskButtons = document.createElement("div");
 
-   // only displays last task - FIX
-  if (storedTasks && storedTasks.length > 0) {
-    for (let i = 0; i <= storedTasks.length; i++){
       task.classList.add("task");
       getSection.content.appendChild(task);
       title.classList.add("taskTitle");
@@ -455,7 +454,106 @@ export const localStorageFunctions = (() => {
       taskDone.src = "../images/check-circle.svg";
       taskDone.id = "taskDone";
       taskButtons.appendChild(taskDone);
+
+      if (storedTasks[i].priority === "low") {
+        task.style.backgroundColor = "var(--taskLow)";
+      }
+      if (storedTasks[i].priority === "medium") {
+        task.style.backgroundColor = "var(--taskMedium)";
+      }
+      if (storedTasks[i].priority === "high") {
+        task.style.backgroundColor = "var(--taskHigh)";
+      }
+
+      task.addEventListener("click", () => {
+        taskDetails.style.display = "flex";
+        taskDetailsText.textContent = `${storedTasks[i].description}`;
+        taskDetailsPriority.textContent = `Priority: ${storedTasks[i].priority}`;
+        if (storedTasks[i].priority === "low") {
+          taskDetailsPriority.style.color = "lightgreen";
+        }
+        if (storedTasks[i].priority === "medium") {
+          taskDetailsPriority.style.color = "orange";
+        }
+        if (storedTasks[i].priority === "high") {
+          taskDetailsPriority.style.color = "crimson";
+        }
+      })
+
+      taskDone.addEventListener("click", () => {
+        event.stopPropagation();
+        task.remove();
+        storedTasks.splice(i, 1); // doesnt remove from array in localStorage
+        alert("Congrats! You have completed this task.");
+      });
   }
 }
 
+function reloadTasks() {
+  storedTasks.forEach((item, i) => {
+    let task = document.createElement("div");
+    let title = document.createElement("div");
+    let group = document.createElement("div");
+    let date = document.createElement("div");
+    let taskDone = document.createElement("img");
+    let taskButtons = document.createElement("div");
+
+    task.classList.add("task");
+    getSection.content.appendChild(task);
+    title.classList.add("taskTitle");
+    title.textContent = `${storedTasks[i].title}`;
+    task.appendChild(title);
+    group.textContent = `${storedTasks[i].group}`;
+    task.appendChild(group);
+    date.textContent = `${storedTasks[i].dueDate}`;
+    task.appendChild(date);
+    task.appendChild(taskButtons);
+    taskDone.src = "../images/check-circle.svg";
+    taskDone.id = "taskDone";
+    taskButtons.appendChild(taskDone);
+
+    if (storedTasks[i].priority === "low") {
+      task.style.backgroundColor = "var(--taskLow)";
+    }
+    if (storedTasks[i].priority === "medium") {
+      task.style.backgroundColor = "var(--taskMedium)";
+    }
+    if (storedTasks[i].priority === "high") {
+      task.style.backgroundColor = "var(--taskHigh)";
+    }
+
+    taskDone.addEventListener("click", () => {
+      event.stopPropagation();
+      task.remove();
+      storedTasks.splice(i, 1);
+      alert("Congrats! You have completed this task.");
+    });
+
+    task.addEventListener("click", () => {
+      taskDetails.style.display = "flex";
+      taskDetailsText.textContent = `${storedTasks[i].description}`;
+      taskDetailsPriority.textContent = `Priority: ${storedTasks[i].priority}`;
+      if (storedTasks[i].priority === "low") {
+        taskDetailsPriority.style.color = "lightgreen";
+      }
+      if (storedTasks[i].priority === "medium") {
+        taskDetailsPriority.style.color = "orange";
+      }
+      if (storedTasks[i].priority === "high") {
+        taskDetailsPriority.style.color = "crimson";
+      }
+    });
+  });
+}
+
+function clearContent() {
+  while (content.firstChild) {
+    content.removeChild(content.lastChild);
+  }
+}
+
+getSection.home.addEventListener("click", () => {
+  clearContent();
+  reloadTasks();
+});
 })();
