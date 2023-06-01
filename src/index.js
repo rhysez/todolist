@@ -147,7 +147,7 @@ export const addTaskLogic = (() => {
       taskDone.src = "../images/check-circle.svg";
       taskDone.id = "taskDone";
       taskButtons.appendChild(taskDone);
-      localStorage.setItem('tasks', JSON.stringify(tasks)) 
+      localStorage.setItem("tasks", JSON.stringify(tasks));
 
       if (tasks[i].priority === "low") {
         task.style.backgroundColor = "var(--taskLow)";
@@ -290,7 +290,7 @@ export const newGroupLogic = (() => {
     option.textContent = group.title;
     getSection.taskGroup.appendChild(option);
 
-    localStorage.setItem('groups', JSON.stringify(groups)) 
+    localStorage.setItem("groups", JSON.stringify(groups));
   });
 
   getSection.groupCancel.addEventListener("click", () => {
@@ -345,7 +345,7 @@ export const newNoteLogic = (() => {
       let deleteNote = document.createElement("img");
 
       displayNote.classList.add("task");
-      displayNote.style.backgroundColor = 'var(--noteGeneric)'
+      displayNote.style.backgroundColor = "var(--noteGeneric)";
       displayNote.textContent = `${notes[i].title}`;
       deleteNote.src = "../images/delete-circle.svg";
       deleteNote.id = "deleteNote";
@@ -374,7 +374,7 @@ export const newNoteLogic = (() => {
     const newNote = new Note(noteTitle.value, noteBody.value);
     notes.push(newNote);
     console.log(notes);
-    localStorage.setItem('notes', JSON.stringify(notes)) 
+    localStorage.setItem("notes", JSON.stringify(notes));
   });
   getSection.noteCancel.addEventListener("click", () => {
     event.preventDefault();
@@ -427,13 +427,12 @@ export const toggleDarkMode = (() => {
 })();
 
 export const localStorageFunctions = (() => {
+  let storedTasks = JSON.parse(localStorage.getItem("tasks"));
+  let storedGroups = localStorage.getItem("groups");
+  let storedNotes = localStorage.getItem("notes");
 
-  let storedTasks = JSON.parse(localStorage.getItem('tasks'));
-  let storedGroups = localStorage.getItem('groups');
-  let storedNotes = localStorage.getItem('notes');
-
-  if (storedTasks.length > 0) {
-    for (let i = 0; i < storedTasks.length; i++){
+  storedTasks.forEach(
+    (item, i) => {
       let task = document.createElement("div");
       let title = document.createElement("div");
       let group = document.createElement("div");
@@ -478,83 +477,84 @@ export const localStorageFunctions = (() => {
         if (storedTasks[i].priority === "high") {
           taskDetailsPriority.style.color = "crimson";
         }
-      })
+      });
 
       taskDone.addEventListener("click", () => {
         event.stopPropagation();
         task.remove();
         storedTasks.splice(i, 1);
-        localStorage.setItem('tasks', JSON.stringify(storedTasks));
+        localStorage.setItem("tasks", JSON.stringify(storedTasks));
         alert("Congrats! You have completed this task.");
       });
-  }
-}
-
-function reloadTasks() {
-  storedTasks.forEach((item, i) => {
-    let task = document.createElement("div");
-    let title = document.createElement("div");
-    let group = document.createElement("div");
-    let date = document.createElement("div");
-    let taskDone = document.createElement("img");
-    let taskButtons = document.createElement("div");
-
-    task.classList.add("task");
-    getSection.content.appendChild(task);
-    title.classList.add("taskTitle");
-    title.textContent = `${storedTasks[i].title}`;
-    task.appendChild(title);
-    group.textContent = `${storedTasks[i].group}`;
-    task.appendChild(group);
-    date.textContent = `${storedTasks[i].dueDate}`;
-    task.appendChild(date);
-    task.appendChild(taskButtons);
-    taskDone.src = "../images/check-circle.svg";
-    taskDone.id = "taskDone";
-    taskButtons.appendChild(taskDone);
-
-    if (storedTasks[i].priority === "low") {
-      task.style.backgroundColor = "var(--taskLow)";
-    }
-    if (storedTasks[i].priority === "medium") {
-      task.style.backgroundColor = "var(--taskMedium)";
-    }
-    if (storedTasks[i].priority === "high") {
-      task.style.backgroundColor = "var(--taskHigh)";
-    }
-
-    taskDone.addEventListener("click", () => {
-      event.stopPropagation();
-      task.remove();
-      storedTasks.splice(i, 1);
-      alert("Congrats! You have completed this task.");
-    });
-
-    task.addEventListener("click", () => {
-      taskDetails.style.display = "flex";
-      taskDetailsText.textContent = `${storedTasks[i].description}`;
-      taskDetailsPriority.textContent = `Priority: ${storedTasks[i].priority}`;
-      if (storedTasks[i].priority === "low") {
-        taskDetailsPriority.style.color = "lightgreen";
-      }
-      if (storedTasks[i].priority === "medium") {
-        taskDetailsPriority.style.color = "orange";
-      }
-      if (storedTasks[i].priority === "high") {
-        taskDetailsPriority.style.color = "crimson";
-      }
-    });
   });
-}
 
-function clearContent() {
-  while (content.firstChild) {
-    content.removeChild(content.lastChild);
+  function reloadTasks() {
+    storedTasks.forEach(
+      (item, i) => {
+        let task = document.createElement("div");
+        let title = document.createElement("div");
+        let group = document.createElement("div");
+        let date = document.createElement("div");
+        let taskDone = document.createElement("img");
+        let taskButtons = document.createElement("div");
+  
+        task.classList.add("task");
+        getSection.content.appendChild(task);
+        title.classList.add("taskTitle");
+        title.textContent = `${storedTasks[i].title}`;
+        task.appendChild(title);
+        group.textContent = `${storedTasks[i].group}`;
+        task.appendChild(group);
+        date.textContent = `${storedTasks[i].dueDate}`;
+        task.appendChild(date);
+        task.appendChild(taskButtons);
+        taskDone.src = "../images/check-circle.svg";
+        taskDone.id = "taskDone";
+        taskButtons.appendChild(taskDone);
+  
+        if (storedTasks[i].priority === "low") {
+          task.style.backgroundColor = "var(--taskLow)";
+        }
+        if (storedTasks[i].priority === "medium") {
+          task.style.backgroundColor = "var(--taskMedium)";
+        }
+        if (storedTasks[i].priority === "high") {
+          task.style.backgroundColor = "var(--taskHigh)";
+        }
+  
+        task.addEventListener("click", () => {
+          taskDetails.style.display = "flex";
+          taskDetailsText.textContent = `${storedTasks[i].description}`;
+          taskDetailsPriority.textContent = `Priority: ${storedTasks[i].priority}`;
+          if (storedTasks[i].priority === "low") {
+            taskDetailsPriority.style.color = "lightgreen";
+          }
+          if (storedTasks[i].priority === "medium") {
+            taskDetailsPriority.style.color = "orange";
+          }
+          if (storedTasks[i].priority === "high") {
+            taskDetailsPriority.style.color = "crimson";
+          }
+        });
+  
+        taskDone.addEventListener("click", () => {
+          event.stopPropagation();
+          task.remove();
+          storedTasks.splice(i, 1);
+          localStorage.setItem("tasks", JSON.stringify(storedTasks));
+          alert("Congrats! You have completed this task.");
+        });
+    });
   }
-}
 
-getSection.home.addEventListener("click", () => {
-  clearContent();
-  reloadTasks();
-});
+  function clearContent() {
+    while (content.firstChild) {
+      content.removeChild(content.lastChild);
+    }
+  }
+
+  getSection.home.addEventListener("click", () => {
+    clearContent();
+    reloadTasks();
+  });
 })();
