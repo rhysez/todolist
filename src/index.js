@@ -189,8 +189,8 @@ export const addTaskLogic = (() => {
   function saveLocalTasks() {
     localStorage.setItem('tasks', JSON.stringify(tasks))
   };
-
-  function runLocalTasks() { // displays tasks from local storage - CURRENTLY ONLY DISPLAYING FIRST ITEM
+  // displays tasks from local storage - CURRENTLY ONLY DISPLAYING FIRST ITEM
+  function runLocalTasks() {
     let task = document.createElement("div");
     let title = document.createElement("div");
     let group = document.createElement("div");
