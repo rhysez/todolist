@@ -165,12 +165,10 @@ input {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    width: 80%;
-    height: 80vh;
-    padding: 2rem;
+    width: 100%;
+    height: 100vh;
+    padding: 1.5rem;
     background-color: var(--containerColor);
-    box-shadow: 1.75px 1.75px 5px rgb(78, 78, 78);
-    border-radius: 10px;
     font-size: 3rem;
     transition: all .15s ease-in-out;
 }
@@ -325,6 +323,7 @@ input {
     width: clamp(2rem, 4.5vw, 4rem);
     height: clamp(2rem, 4.5vw, 4rem);
     filter: invert(26%) sepia(57%) saturate(5113%) hue-rotate(237deg) brightness(107%) contrast(102%);
+    content: url(./images/check-circle.svg);
 }
 
 #taskDelete {
