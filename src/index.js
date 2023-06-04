@@ -144,7 +144,7 @@ export const addTaskLogic = (() => {
       date.textContent = `${tasks[i].dueDate}`;
       task.appendChild(date);
       task.appendChild(taskButtons);
-      taskDone.src = "../images/check-circle.svg";
+      taskDone.src = "../dist/images/check-circle.svg";
       taskDone.id = "taskDone";
       taskButtons.appendChild(taskDone);
       saveLocalTasks();
@@ -216,7 +216,7 @@ export const addTaskLogic = (() => {
       date.textContent = `${tasks[i].dueDate}`;
       task.appendChild(date);
       task.appendChild(taskButtons);
-      taskDone.src = "../images/check-circle.svg";
+      taskDone.src = "../dist/images/check-circle.svg";
       taskDone.id = "taskDone";
       taskButtons.appendChild(taskDone);
       saveLocalTasks();
@@ -275,7 +275,7 @@ export const addTaskLogic = (() => {
       date.textContent = `${tasks[i].dueDate}`;
       task.appendChild(date);
       task.appendChild(taskButtons);
-      taskDone.src = "../images/check-circle.svg";
+      taskDone.src = "../dist/images/check-circle.svg";
       taskDone.id = "taskDone";
       taskButtons.appendChild(taskDone);
 
@@ -386,7 +386,7 @@ export const newGroupLogic = (() => {
 
       displayGroup.classList.add("task");
       displayGroup.textContent = `${groups[i].title}`;
-      deleteGroup.src = "../images/delete-circle.svg";
+      deleteGroup.src = "../dist/images/delete-circle.svg";
       deleteGroup.id = "deleteGroup";
       content.appendChild(displayGroup);
       displayGroup.appendChild(deleteGroup);
@@ -440,7 +440,7 @@ export const newNoteLogic = (() => {
       displayNote.classList.add("task");
       displayNote.style.backgroundColor = "var(--noteGeneric)";
       displayNote.textContent = `${notes[i].title}`;
-      deleteNote.src = "../images/delete-circle.svg";
+      deleteNote.src = "../dist/images/delete-circle.svg";
       deleteNote.id = "deleteNote";
       content.appendChild(displayNote);
       displayNote.appendChild(deleteNote);
@@ -490,7 +490,7 @@ export const toggleDarkMode = (() => {
     if (document.body.style.backgroundColor !== "var(--bodyColorDark)") {
       document.body.style.backgroundColor = "var(--bodyColorDark)";
       getSection.container.style.backgroundColor = "var(--containerColorDark)";
-      getSection.darkMode.src = "../images/weather-night.svg";
+      getSection.darkMode.src = "../dist/images/weather-night.svg";
 
       getSection.content.style.backgroundColor = "var(--boxesDark)";
       getSection.home.style.backgroundColor = "var(--boxesDark)";
@@ -504,7 +504,7 @@ export const toggleDarkMode = (() => {
     } else {
       document.body.style.backgroundColor = "var(--bodyColor)";
       getSection.container.style.backgroundColor = "var(--containerColor)";
-      getSection.darkMode.src = "../images/lightbulb-on-outline.svg";
+      getSection.darkMode.src = "../dist/images/lightbulb-on-outline.svg";
 
       getSection.content.style.backgroundColor = "var(--sidebarColor)";
       getSection.home.style.backgroundColor = "var(--sidebarColor)";
