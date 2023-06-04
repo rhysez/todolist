@@ -163,7 +163,7 @@ export const addTaskLogic = (() => {
         event.stopPropagation();
         task.remove();
         tasks.splice(i, 1);
-        console.log(tasks);
+        localStorage.setItem('tasks', JSON.stringify(tasks));
         alert("Congrats! You have completed this task.");
       });
 
@@ -235,7 +235,7 @@ export const addTaskLogic = (() => {
         event.stopPropagation();
         task.remove();
         tasks.splice(i, 1);
-        console.log(tasks);
+        localStorage.setItem('tasks', JSON.stringify(tasks));
         alert("Congrats! You have completed this task.");
       });
   
@@ -293,7 +293,7 @@ export const addTaskLogic = (() => {
         event.stopPropagation();
         task.remove();
         tasks.splice(i, 1);
-        console.log(tasks);
+        localStorage.setItem('tasks', JSON.stringify(tasks));
         alert("Congrats! You have completed this task.");
       });
 
@@ -394,7 +394,7 @@ export const newGroupLogic = (() => {
         event.stopPropagation();
         displayGroup.remove();
         groups.splice(i, 1);
-        console.log(groups);
+        localStorage.setItem('groups', JSON.stringify(groups));
       });
     });
   }
@@ -448,6 +448,7 @@ export const newNoteLogic = (() => {
         event.stopPropagation();
         displayNote.remove();
         notes.splice(i, 1);
+        localStorage.setItem('notes', JSON.stringify(notes));
       });
 
       displayNote.addEventListener("click", () => {
