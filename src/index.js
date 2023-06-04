@@ -416,7 +416,7 @@ export const newGroupLogic = (() => {
 })();
 
 export const newNoteLogic = (() => {
-  const notes = [];
+  let notes = [];
 
   function clearContent() {
     while (content.firstChild) {
@@ -425,6 +425,14 @@ export const newNoteLogic = (() => {
   }
 
   function loadNotes() {
+    const localNotes = JSON.parse(localStorage.getItem('notes'));
+    if (!localNotes){
+      return;
+    }
+    
+    notes = [];
+    notes.push(...localNotes);
+
     notes.forEach((note, i) => {
       let displayNote = document.createElement("div");
       let deleteNote = document.createElement("img");
@@ -440,7 +448,6 @@ export const newNoteLogic = (() => {
         event.stopPropagation();
         displayNote.remove();
         notes.splice(i, 1);
-        console.log(notes);
       });
 
       displayNote.addEventListener("click", () => {
