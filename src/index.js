@@ -187,7 +187,9 @@ export const addTaskLogic = (() => {
   function saveLocalTasks() {
     localStorage.setItem('tasks', JSON.stringify(tasks))
   };
-  // displays tasks from local storage - CURRENTLY ONLY DISPLAYING FIRST ITEM
+  
+  // displays tasks from localStorage
+  // if localTasks variable doesn't exist, terminates function
   function runLocalTasks() {
     const localTasks = JSON.parse(localStorage.getItem('tasks'));
     if (!localTasks){
@@ -343,8 +345,7 @@ export const addTaskLogic = (() => {
 })();
 
 export const newGroupLogic = (() => {
-  const groups = [];
-  let localGroups = JSON.parse(localStorage.getItem('groups'));
+  let groups = [];
 
   getSection.newGroup.addEventListener("click", () => {
     groupBox.style.display = "flex";
@@ -354,8 +355,6 @@ export const newGroupLogic = (() => {
     let group = new Group(groupTitle.value);
     groupBox.style.display = "none";
     groups.push(group);
-    console.log(group);
-    console.log(groups);
 
     let option = document.createElement("option");
     option.value = group.title;
@@ -371,7 +370,16 @@ export const newGroupLogic = (() => {
     event.preventDefault();
   });
 
+  // CURRENTLY DUPLICATES GROUP DIVS - FIX!
   function loadGroups() {
+    const localGroups = JSON.parse(localStorage.getItem('groups'));
+    if (!localGroups){
+      return;
+    }
+    
+    groups = [];
+    groups.push(...localGroups);
+
     groups.forEach((group, i) => {
       let displayGroup = document.createElement("div");
       let deleteGroup = document.createElement("img");
