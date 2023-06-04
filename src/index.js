@@ -115,8 +115,6 @@ export const addTaskLogic = (() => {
   const tasks = []; // contains task objects
   let taskId = 1;
 
-  window.onload = runLocalTasks();
-
   function loadTasks() {
     let newTask = new Task(
       taskTitle.value,
@@ -191,17 +189,21 @@ export const addTaskLogic = (() => {
   };
   // displays tasks from local storage - CURRENTLY ONLY DISPLAYING FIRST ITEM
   function runLocalTasks() {
-    let task = document.createElement("div");
-    let title = document.createElement("div");
-    let group = document.createElement("div");
-    let date = document.createElement("div");
-    let taskDone = document.createElement("img");
-    let taskButtons = document.createElement("div");
-
     const localTasks = JSON.parse(localStorage.getItem('tasks'));
+    if (!localTasks){
+      return;
+    }
+
     tasks.push(...localTasks);
   
     tasks.forEach((item, i) => {
+      let task = document.createElement("div");
+      let title = document.createElement("div");
+      let group = document.createElement("div");
+      let date = document.createElement("div");
+      let taskDone = document.createElement("img");
+      let taskButtons = document.createElement("div");
+
       task.classList.add("task");
       getSection.content.appendChild(task);
       title.classList.add("taskTitle");
@@ -309,6 +311,8 @@ export const addTaskLogic = (() => {
       });
     });
   }
+
+  window.onload = runLocalTasks();
 
   function clearContent() {
     while (content.firstChild) {
