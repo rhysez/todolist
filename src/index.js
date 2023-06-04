@@ -147,7 +147,7 @@ export const addTaskLogic = (() => {
       taskDone.src = "../images/check-circle.svg";
       taskDone.id = "taskDone";
       taskButtons.appendChild(taskDone);
-      localStorage.setItem("tasks", JSON.stringify(tasks));
+      saveLocalTasks();
 
       if (tasks[i].priority === "low") {
         task.style.backgroundColor = "var(--taskLow)";
@@ -183,6 +183,10 @@ export const addTaskLogic = (() => {
       });
     });
   }
+
+  function saveLocalTasks() {
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+  };
 
   function reloadTasks() {
     tasks.forEach((item, i) => {
@@ -290,7 +294,7 @@ export const newGroupLogic = (() => {
     option.textContent = group.title;
     getSection.taskGroup.appendChild(option);
 
-    localStorage.setItem("groups", JSON.stringify(groups));
+    saveLocalGroups();
   });
 
   getSection.groupCancel.addEventListener("click", () => {
@@ -316,6 +320,10 @@ export const newGroupLogic = (() => {
         console.log(groups);
       });
     });
+  }
+
+  function saveLocalGroups() {
+    localStorage.setItem('groups', JSON.stringify(groups));
   }
 
   function clearContent() {
