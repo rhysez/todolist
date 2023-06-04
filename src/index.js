@@ -114,7 +114,8 @@ export class Note {
 export const addTaskLogic = (() => {
   const tasks = []; // contains task objects
   let taskId = 1;
-  let localTasks = JSON.parse(localStorage.getItem('tasks'));
+
+  window.onload = runLocalTasks();
 
   function loadTasks() {
     let newTask = new Task(
@@ -188,6 +189,68 @@ export const addTaskLogic = (() => {
   function saveLocalTasks() {
     localStorage.setItem('tasks', JSON.stringify(tasks))
   };
+
+  function runLocalTasks() { // displays tasks from local storage - CURRENTLY ONLY DISPLAYING FIRST ITEM
+    let task = document.createElement("div");
+    let title = document.createElement("div");
+    let group = document.createElement("div");
+    let date = document.createElement("div");
+    let taskDone = document.createElement("img");
+    let taskButtons = document.createElement("div");
+
+    const localTasks = JSON.parse(localStorage.getItem('tasks'));
+    tasks.push(...localTasks);
+  
+    tasks.forEach((item, i) => {
+      task.classList.add("task");
+      getSection.content.appendChild(task);
+      title.classList.add("taskTitle");
+      title.textContent = `${tasks[i].title}`;
+      task.appendChild(title);
+      group.textContent = `${tasks[i].group}`;
+      task.appendChild(group);
+      date.textContent = `${tasks[i].dueDate}`;
+      task.appendChild(date);
+      task.appendChild(taskButtons);
+      taskDone.src = "../images/check-circle.svg";
+      taskDone.id = "taskDone";
+      taskButtons.appendChild(taskDone);
+      saveLocalTasks();
+  
+      if (tasks[i].priority === "low") {
+        task.style.backgroundColor = "var(--taskLow)";
+      }
+      if (tasks[i].priority === "medium") {
+        task.style.backgroundColor = "var(--taskMedium)";
+      }
+      if (tasks[i].priority === "high") {
+        task.style.backgroundColor = "var(--taskHigh)";
+      }
+  
+      taskDone.addEventListener("click", () => {
+        event.stopPropagation();
+        task.remove();
+        tasks.splice(i, 1);
+        console.log(tasks);
+        alert("Congrats! You have completed this task.");
+      });
+  
+      task.addEventListener("click", () => {
+        taskDetails.style.display = "flex";
+        taskDetailsText.textContent = `${newTask.description}`;
+        taskDetailsPriority.textContent = `Priority: ${newTask.priority}`;
+        if (newTask.priority === "low") {
+          taskDetailsPriority.style.color = "lightgreen";
+        }
+        if (newTask.priority === "medium") {
+          taskDetailsPriority.style.color = "orange";
+        }
+        if (newTask.priority === "high") {
+          taskDetailsPriority.style.color = "crimson";
+        }
+      });
+    });
+  }
 
   function reloadTasks() {
     tasks.forEach((item, i) => {
@@ -435,5 +498,8 @@ export const toggleDarkMode = (() => {
     }
   });
 })();
+
+
+
 
 
