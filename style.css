@@ -345,5 +345,5 @@ input {
     width: clamp(2rem, 4.5vw, 4rem);
     height: clamp(2rem, 4.5vw, 4rem);
     filter: invert(0%) sepia(0%) saturate(7474%) hue-rotate(187deg) brightness(101%) contrast(105%);
-    content: url(./images/check-circle.svg);
+    content: url(./images/delete-circle.svg);
 }
