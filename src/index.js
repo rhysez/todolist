@@ -114,6 +114,7 @@ export class Note {
 export const addTaskLogic = (() => {
   const tasks = []; // contains task objects
   let taskId = 1;
+  let localTasks = JSON.parse(localStorage.getItem('tasks'));
 
   function loadTasks() {
     let newTask = new Task(
@@ -276,6 +277,7 @@ export const addTaskLogic = (() => {
 
 export const newGroupLogic = (() => {
   const groups = [];
+  let localGroups = JSON.parse(localStorage.getItem('groups'));
 
   getSection.newGroup.addEventListener("click", () => {
     groupBox.style.display = "flex";
