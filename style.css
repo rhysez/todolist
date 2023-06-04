@@ -187,6 +187,7 @@ input {
     height: 3rem;
     vertical-align: middle;
     filter: invert(26%) sepia(57%) saturate(5113%) hue-rotate(237deg) brightness(107%) contrast(102%);
+    font-size: clamp(1rem, 2.5vw, 2rem);
 }
 
 #header {
@@ -266,7 +267,7 @@ input {
 
 #headerButtons {
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
 }
 
 #github {
