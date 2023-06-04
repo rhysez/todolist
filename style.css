@@ -25,6 +25,11 @@
     100% { opacity: 1; }
 }
 
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
 @keyframes createBox {
     from {
       transform: scale(0);
@@ -309,6 +314,7 @@ input {
     transition: all .15s ease-in-out;
     color: var(--textColor);
     background-color: var(--taskGeneric);
+    animation: fadeIn 0.25s;
 }
 
 .task:hover {
